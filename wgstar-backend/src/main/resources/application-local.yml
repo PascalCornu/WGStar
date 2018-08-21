@@ -1,0 +1,19 @@
+server:
+  port: 8282
+
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: wgstar
+    password: wgstar
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+
+logging:
+  level:
+    org.springframework.cloud: 'INFO'
+    org.springframework.security: 'INFO'
+    org.hibernate.SQL: 'DEBUG'
