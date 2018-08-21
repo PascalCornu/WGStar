@@ -1,1 +1,2 @@
-# WGStar
+# WGStar 
+Nothing interesting
