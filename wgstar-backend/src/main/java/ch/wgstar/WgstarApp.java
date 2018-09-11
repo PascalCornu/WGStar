@@ -17,6 +17,6 @@ public class WgstarApp {
 
     @RequestMapping("/app")
     String home() {
-        return "Hello World!";
+        return "IF Best; Jeeeee Shesh";
     }
 }
