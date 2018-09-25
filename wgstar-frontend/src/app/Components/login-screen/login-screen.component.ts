@@ -12,22 +12,13 @@ import {Person} from '../../share/model/person';
 })
 export class LoginScreenComponent implements OnInit {
 
-  persons: Person[] = [];
 
-  constructor(private activateedRoute: ActivatedRoute,
-              private router: Router,
-              private personService: PersonService) { }
+
+  constructor() { }
 
   ngOnInit() {
-    this.getPersons();
   }
 
-  public getPersons() {
-    this.personService
-      .getPersons()
-      .subscribe(persons => {
-        this.persons = persons;
-      });
-  }
+
 
 }
