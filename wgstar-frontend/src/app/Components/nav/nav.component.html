@@ -2,4 +2,4 @@
   {{navItem.displayName}}
 </p>
 
-<p>{{persons}}</p>
+<p *ngFor="let person of persons">{{person.firstname}}</p>

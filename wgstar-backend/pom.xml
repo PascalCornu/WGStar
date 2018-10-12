@@ -4,15 +4,15 @@
 
 <modelVersion>4.0.0</modelVersion>
 
-
+    <groupId>ch.wgstar</groupId>
     <artifactId>wgstar-backend</artifactId>
     <packaging>jar</packaging>
-	<parent>
-		<groupId>ch.wgstar</groupId>
-		<artifactId>wgstar-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-	</parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.4.RELEASE</version>
+        <relativePath/>
+    </parent>
 
     <name>wgstar-backend</name>
     <description>backend pom fuer spring boot und java</description>
