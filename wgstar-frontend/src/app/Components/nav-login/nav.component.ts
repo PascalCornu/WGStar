@@ -19,11 +19,13 @@ export class NavComponent implements OnInit {
   persons: Person[] = [];
 
   public navItems: Array<NavItem> = [
-    {displayName: 'Home', routerLink: 'home'},
-    {displayName: 'Projektübersicht', routerLink: 'project-board'},
-    {displayName: 'Test erfassen', routerLink: 'capture-test'},
-    {displayName: 'Informationen', routerLink: 'info'}
+    {displayName: 'Login', routerLink: 'login'},
+    {displayName: 'Registriern', routerLink: 'registrieren'},
+    {displayName: 'Member Zone', routerLink: 'member'},
   ];
+
+
+
   constructor(private activateedRoute: ActivatedRoute,
               private router: Router,
               private personService: PersonService) { }
