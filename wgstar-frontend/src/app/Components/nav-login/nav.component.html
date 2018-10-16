@@ -1,0 +1,7 @@
+<li *ngFor="let navItem of navItems" class="nav-item">
+  <a [routerLink]="[navItem.routerLink]">
+    <span>{{navItem.displayName}}</span>
+  </a>
+</li>
+
+<p *ngFor="let person of persons">{{person.firstname}}</p>
