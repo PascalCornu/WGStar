@@ -10,7 +10,7 @@ interface NavItem {
 @Component({
   selector: 'app-nav-member',
   templateUrl: './nav-member.component.html',
-  styleUrls: ['./nav-member.component.css']
+  styleUrls: ['./nav-member.component.scss']
 })
 export class NavMemberComponent implements OnInit {
 
@@ -19,6 +19,7 @@ export class NavMemberComponent implements OnInit {
               private personService: PersonService) { }
 
   ngOnInit() {
+    this.router.navigate(['/member']);
   }
 
   public navItems: Array<NavItem> = [
