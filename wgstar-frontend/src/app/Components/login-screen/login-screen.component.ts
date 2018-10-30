@@ -19,6 +19,7 @@ export class LoginScreenComponent implements OnInit {
   ngOnInit() {
   }
 
+  // TODO: isMember in appComponent.ts auf true setzen und member-nav aktivieren
 
 
 }

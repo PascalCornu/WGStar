@@ -1,3 +1,7 @@
-<p>
-  nav-member works!
-</p>
+<li *ngFor="let navItem of navItems" class="nav-item">
+  <a [routerLink]="[navItem.routerLink]">
+    <span>{{navItem.displayName}}</span>
+  </a>
+</li>
+
+
