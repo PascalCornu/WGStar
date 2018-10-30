@@ -21,7 +21,6 @@ export class NavComponent implements OnInit {
   public navItems: Array<NavItem> = [
     {displayName: 'Login', routerLink: 'login'},
     {displayName: 'Registriern', routerLink: 'registrieren'},
-    {displayName: 'Member Zone', routerLink: 'member'},
   ];
 
 
@@ -31,6 +30,7 @@ export class NavComponent implements OnInit {
               private personService: PersonService) { }
 
   ngOnInit() {
+    this.router.navigate(['/login']);
     this.getPersons()
   }
 
