@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
 
   public navItems: Array<NavItem> = [
     {displayName: 'Login', routerLink: 'login'},
-    {displayName: 'Registriern', routerLink: 'registrieren'},
+    {displayName: 'Registrieren', routerLink: 'registrieren'},
   ];
 
 
@@ -30,7 +30,7 @@ export class NavComponent implements OnInit {
               private personService: PersonService) { }
 
   ngOnInit() {
-    this.router.navigate(['/login']);
+    //this.router.navigate(['/login']);
     this.getPersons()
   }
 
