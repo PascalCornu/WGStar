@@ -1,21 +1,13 @@
-
-
 mat-card {
   display: flex;
   flex-direction: column;
   margin: 20px;
   width: 30%;
-  background-color: white !important;
-  color: black !important;
 }
 
 .form-registrate {
   display: flex;
   flex-direction: column;
-}
-
-mat-hint {
-  color: darkgray !important;
 }
 
 mat-form-field {
