@@ -23,10 +23,11 @@ public class WgRestController {
 
     @RequestMapping(value = "/wg/save", method = RequestMethod.POST)
     public void saveWg(@RequestBody Map<String, Object> payload) {
-        WG wg = wgRepository.getOne((Long) payload.get("id"));
+        /*WG wg = wgRepository.getOne((Long) payload.get("id"));
         if(wg == null){
             wg = new WG();
-        }
+        }*/
+        WG wg = new WG();
         wg.setName((String) payload.get("name"));
         wg.setAddress((String) payload.get("address"));
         wg.setPlz((int) payload.get("plz"));
