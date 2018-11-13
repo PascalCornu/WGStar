@@ -19,4 +19,7 @@ public class Person extends BaseEntity {
 
     @Size(max = FIELD_LENGTH_NORMAL)
     private String email;
+
+    @Size(max = FIELD_LENGTH_NORMAL)
+    private String password;
 }
