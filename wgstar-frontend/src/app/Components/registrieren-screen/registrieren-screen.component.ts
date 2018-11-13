@@ -14,22 +14,36 @@ export class RegistrierenScreenComponent implements OnInit {
   ngOnInit() {
   }
 
+  samePassword(password: string, passwordRepeat: string): boolean {
+    if (password === passwordRepeat){
+      return true;
+    }
+    return false;
+  }
+
   emailFormControl = new FormControl('', [
     Validators.required,
-    Validators.email,
+    Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
   ]);
 
-  nameFormControl = new FormControl('', [
+  lastnameFormControl = new FormControl('', [
     Validators.required,
+    Validators.pattern(/^[^0-9]+$/),
+  ]);
+
+  firstnameFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern(/^[^0-9]+$/),
   ]);
 
   passwordFormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(8),
+    Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/),
   ]);
 
-  passwordRepeatControl = new FormControl( '', [
+  passwordRepeatFormControl = new FormControl( '', [
     Validators.required,
-  ])
+  ]);
 
 }
