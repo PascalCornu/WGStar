@@ -11,6 +11,9 @@ import {HttpErrorHandler} from './share/service/http-error-handler.service';
 import { MemberZoneComponent } from './Components/member-zone/member-zone.component';
 import { NavMemberComponent } from './Components/nav-member/nav-member.component';
 import { RegistrierenScreenComponent } from './Components/registrieren-screen/registrieren-screen.component';
+
+import {MatHint } from '@angular/material';
+import {MatError} from "@angular/material/typings/form-field";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
@@ -43,6 +46,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -57,6 +62,40 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     BrowserModule,
     HttpClientModule,
     routing,
+    MatButtonModule,
+    MatCheckboxModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatStepperModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatButtonToggleModule,
+    MatChipsModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
