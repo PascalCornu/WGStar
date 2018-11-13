@@ -22,7 +22,7 @@ public class PersonRestController {
     @Autowired
     private PersonRepository personRepository;
 
-    @RequestMapping(value = "/personen", method = RequestMethod.GET)
+    @RequestMapping(value = "/person/all", method = RequestMethod.GET)
     public ResponseEntity<?> getPersonen() throws JsonProcessingException {
         List<Person> list = personRepository.findAll();
         Set<PersonView> collection = list.stream().map(PersonView::from).collect(Collectors.toSet());

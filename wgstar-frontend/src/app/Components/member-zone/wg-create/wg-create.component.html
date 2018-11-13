@@ -1,0 +1,11 @@
+<h1>Erstelle eine WG</h1>
+<input [(ngModel)]="createWG.name" class="name" type="text" placeholder="Name der WG">
+<input [(ngModel)]="createWG.rooms" class="name" type="number" min="0" placeholder="Anzahl Zimmer">
+<input [(ngModel)]="createWG.address" class="name" type="text" placeholder="Adresse ink. Hausnummer">
+<input [(ngModel)]="createWG.place" class="name" type="text" placeholder="Ort">
+<input [(ngModel)]="createWG.plz" class="name" type="number" placeholder="PLZ">
+<button (click)="saveWg()">WG Speichern</button>
+<div *ngFor="let person of persons">
+  <p>{{person.firstname}}</p>
+</div>
+
