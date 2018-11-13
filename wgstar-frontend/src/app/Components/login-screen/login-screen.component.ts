@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {PersonService} from '../../share/service/person.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Person} from '../../share/model/person';
 
 
 
@@ -11,7 +8,6 @@ import {Person} from '../../share/model/person';
   styleUrls: ['./login-screen.component.css']
 })
 export class LoginScreenComponent implements OnInit {
-
 
 
   constructor() { }
