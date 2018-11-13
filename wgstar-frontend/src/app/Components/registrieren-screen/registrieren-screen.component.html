@@ -35,7 +35,7 @@
     <mat-form-field>
       <input matInput #passwordRepeat type="password" placeholder="Passwort bestätigen" [formControl]="passwordRepeatControl">
       <mat-hint>Wiederholen sie das Passwort, welches zuvor angegeben wurde</mat-hint>
-      <mat-error *ngIf="passwordRepeat.value !== password.value && !passwordRepeatControl.hasError('required')">
+      <mat-error *ngIf="passwordRepeat.value !== password.value">
         Eine anderes Passwort wurde angegeben
       </mat-error>
       <mat-error *ngIf="passwordFormControl.hasError('required')">
