@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
 
   public navItems: Array<NavItem> = [
     {displayName: 'Login', routerLink: 'login'},
-    {displayName: 'Registriern', routerLink: 'registrieren'},
+    {displayName: 'Registrieren', routerLink: 'registrieren'},
   ];
 
 
