@@ -9,8 +9,7 @@ import {Wg} from '../model/wg';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
+    'Content-Type': 'application/json'
   })
 };
 
@@ -23,8 +22,7 @@ export class WgService {
     this.handleError = httpErrorHandler.createHandleError('Wg');
   }
 
-  saveWg(wg: Wg){
-    debugger;
+  saveWg(wg: Wg) {
     return this.http
       .post<Wg>(apiEndpoints.saveWg, JSON.stringify(wg), httpOptions)
       .pipe(

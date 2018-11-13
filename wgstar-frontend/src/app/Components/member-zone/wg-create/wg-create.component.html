@@ -4,5 +4,7 @@
 <input [(ngModel)]="createWG.address" class="name" type="text" placeholder="Adresse ink. Hausnummer">
 <input [(ngModel)]="createWG.place" class="name" type="text" placeholder="Ort">
 <button (click)="saveWg()"></button>
-
+<div *ngFor="let person of persons">
+  <p>{{person.firstname}}</p>
+</div>
 

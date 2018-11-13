@@ -23,6 +23,8 @@ public class WgRestController {
 
     @RequestMapping(value = "/wg/save", method = RequestMethod.POST)
     public void saveWg(@RequestBody Map<String, Object> payload) {
+
+        System.out.println("hallo??");
         WG wg = wgRepository.getOne((Long) payload.get("id"));
         if(wg == null){
             wg = new WG();
