@@ -28,9 +28,7 @@ export class RegistrierenScreenComponent implements OnInit {
   }
 
   samePassword(password: string, passwordRepeat: string): boolean {
-    if (password === passwordRepeat){
-      return true;
-    }
+    console.log("test");
     return false;
   }
 
