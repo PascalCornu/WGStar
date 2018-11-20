@@ -14,6 +14,19 @@ export class RegistrierenScreenComponent implements OnInit {
   ngOnInit() {
   }
 
+  errors(password: string, passwordRepeat: string): boolean{
+    if(!this.emailFormControl.hasError &&
+      !this.firstnameFormControl.hasError &&
+      !this.lastnameFormControl.hasError &&
+      !this.passwordFormControl.hasError &&
+      !this.passwordRepeatFormControl.hasError &&
+      password === passwordRepeat){
+      return false;
+    }
+
+    return true;
+  }
+
   samePassword(password: string, passwordRepeat: string): boolean {
     if (password === passwordRepeat){
       return true;
