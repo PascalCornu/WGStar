@@ -1,3 +1,46 @@
-<p>
-  registrieren-screen works!
-</p>
+<mat-card>
+  <form class="form-registrate">
+    <mat-form-field>
+      <input matInput placeholder="Vorname">
+      <mat-error *ngIf="nameFormControl.hasError('required')">
+        Es muss ein Vorname angegeben werden
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Nachname" >
+      <mat-error *ngIf="nameFormControl.hasError('required')">
+        Es muss ein Nachname angegeben werden
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" [formControl]="emailFormControl">
+      <mat-hint>vorname.nachname@example.com</mat-hint>
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Eine ungültige E-Mail wurde angegeben
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Es muss eine E-Mail angegeben werden
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput #password type="password" placeholder="Passwort" [formControl]="passwordFormControl">
+      <mat-hint>Min 8 Zeichen, Min 1. Gross/Kleinbuchstabe, Min. 1 Zahl</mat-hint>
+      <mat-error *ngIf="passwordFormControl.hasError && !passwordFormControl.hasError('required')">
+        Eine ungültiges Passwort wurde angegeben
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        Es muss ein Passwort angegeben werden
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput #passwordRepeat type="password" placeholder="Passwort bestätigen" [formControl]="passwordRepeatControl">
+      <mat-hint>Wiederholen sie das Passwort, welches zuvor angegeben wurde</mat-hint>
+      <mat-error *ngIf="passwordRepeat.value !== password.value">
+        Eine anderes Passwort wurde angegeben
+      </mat-error>
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        Das Passwort muss bestätigt werden
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-card>
