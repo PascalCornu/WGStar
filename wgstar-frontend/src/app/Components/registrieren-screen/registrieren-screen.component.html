@@ -1,7 +1,7 @@
 <mat-card>
   <form class="form-registrate">
     <mat-form-field>
-      <input matInput placeholder="Vorname" [formControl]="firstnameFormControl">
+      <input #firstName matInput placeholder="Vorname" [formControl]="firstnameFormControl">
       <mat-hint>Name ohne Sonderzeichen</mat-hint>
       <mat-error *ngIf="firstnameFormControl.hasError('pattern') && !firstnameFormControl.hasError('required')">
         Es wurde ein ungültiger Vorname angegebn
@@ -11,7 +11,7 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Nachname" [formControl]="lastnameFormControl">
+      <input #lastName matInput placeholder="Nachname" [formControl]="lastnameFormControl">
       <mat-hint>Name ohne Sonderzeichen</mat-hint>
       <mat-error *ngIf="lastnameFormControl.hasError('pattern') && !lastnameFormControl.hasError('required')">
         Es wurde ein ungültiger Nachname angegeben
@@ -21,7 +21,7 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Email" [formControl]="emailFormControl">
+      <input #email matInput placeholder="Email" [formControl]="emailFormControl">
       <mat-hint>vorname.nachname@example.com</mat-hint>
       <mat-error *ngIf="emailFormControl.hasError && !emailFormControl.hasError('required')">
         Eine ungültige E-Mail wurde angegeben
@@ -41,13 +41,13 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput #passwordRepeat type="password" placeholder="Passwort bestätigen" [formControl]="passwordRepeatFormControl">
+      <input required matInput #passwordRepeat type="password" placeholder="Passwort bestätigen" [formControl]="passwordRepeatFormControl">
       <mat-hint>Wiederholen sie das Passwort, welches zuvor angegeben wurde</mat-hint>
-      <mat-error *ngIf="samePassword(password.value, passwordRepeat.value) && !passwordRepeatFormControl.hasError('required')">
-        Ein anderes Passwort wurde angegeben
-      </mat-error>
       <mat-error *ngIf="passwordRepeatFormControl.hasError('required')">
         Das Passwort muss bestätigt werden
+      </mat-error>
+      <mat-error *ngIf="!samePasswords(passwordRepeat.value && password.value) && !passwordRepeatFormControl.hasError('required')">
+        Ein anderes Passwort wurde angegeben
       </mat-error>
     </mat-form-field>
     <button [disabled]="!errors(password.value, passwordRepeat.value)" class="button-submit" mat-button>Registrieren</button>
