@@ -24,7 +24,7 @@ public class PersonRestController {
     @Autowired
     private PersonRepository personRepository;
 
-    @RequestMapping(value = "/person/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/person/all", method = RequestMethod.GET)
     public ResponseEntity<?> getPersonen() throws JsonProcessingException {
         List<Person> list = personRepository.findAll();
         Set<PersonView> collection = list.stream().map(PersonView::from).collect(Collectors.toSet());
@@ -32,7 +32,7 @@ public class PersonRestController {
         return new ResponseEntity<>(result, HttpUtils.headers(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/person/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/person/save", method = RequestMethod.POST)
     public void saveWg(@RequestBody Map<String, Object> payload) {
         /*Person person = personRepository.getOne((Long) payload.get("id"));
         if(person == null){
