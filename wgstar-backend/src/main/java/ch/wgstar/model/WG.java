@@ -4,22 +4,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 @Entity
 @Getter
 @Setter
-public class Person extends BaseEntity {
+public class WG extends BaseEntity{
+    @Size(max = FIELD_LENGTH_NORMAL)
+    private String name;
 
     @Size(max = FIELD_LENGTH_NORMAL)
-    private String lastname;
+    private String address;
+
+    @Min(1)
+    private int plz;
 
     @Size(max = FIELD_LENGTH_NORMAL)
-    private String firstname;
+    private String place;
 
-    @Size(max = FIELD_LENGTH_NORMAL)
-    private String email;
-
-    @Size(max = FIELD_LENGTH_NORMAL)
-    private String password;
+    @Min(1)
+    private int rooms;
 }
