@@ -34,9 +34,9 @@ public class PersonRestController {
 
     @RequestMapping(value = "/person/save", method = RequestMethod.POST)
     public void saveWg(@RequestBody Map<String, Object> payload) {
-        /*WG wg = wgRepository.getOne((Long) payload.get("id"));
-        if(wg == null){
-            wg = new WG();
+        /*Person person = personRepository.getOne((Long) payload.get("id"));
+        if(person == null){
+            person = new Person();
         }*/
         Person person = new Person();
         person.setFirstname((String) payload.get("firstname"));
