@@ -30,7 +30,7 @@ export class NavComponent implements OnInit {
               private personService: PersonService) { }
 
   ngOnInit() {
-    // this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
     this.getPersons()
   }
 
