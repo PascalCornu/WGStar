@@ -39,11 +39,9 @@ export class LoginScreenComponent implements OnInit {
 
 
   public getPersons() {
-    debugger;
     this.personService
       .getPersons()
       .subscribe(persons => {
-        debugger;
         this.persons = persons;
       });
   }
