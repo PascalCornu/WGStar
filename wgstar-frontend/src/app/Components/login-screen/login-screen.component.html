@@ -1,5 +1,13 @@
-<p>
-  login-screen works!
-</p>
-
-<p>{{persons}}</p>
+<mat-card>
+  <form class="form-login">
+    <mat-form-field>
+      <input matInput [(ngModel)]="loginPerson.email" placeholder="Email" >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="loginPerson.password" placeholder="Passwort" >
+    </mat-form-field>
+    <button (click)="checkLogin()">
+      Login
+    </button>
+  </form>
+</mat-card>
