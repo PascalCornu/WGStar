@@ -50,6 +50,6 @@
         Das Passwort muss bestätigt werden
       </mat-error>
     </mat-form-field>
-    <button [disabled]="errors(password.value, passwordRepeat.value)" class="button-submit" mat-button>Registrieren</button>
+    <button [disabled]="!errors(password.value, passwordRepeat.value)" class="button-submit" mat-button>Registrieren</button>
   </form>
 </mat-card>
