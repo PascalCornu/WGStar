@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PersonService} from "../../share/service/person.service";
 import {Person} from "../../share/model/person";
+import {AppComponent}from "../../app.component";
 
 
 
@@ -24,16 +25,25 @@ export class LoginScreenComponent implements OnInit {
 
 
   public checkLogin() {
-    for (person in this.persons) {
-      if(person.)
+    let loginSuccess = false;
+    for (this.person of this.persons) {
+      if(this.person.email == this.loginPerson.email) {
+        if (this.person.password == this.loginPerson.password) {
+          AppComponent.prototype.isMember = true;
+          loginSuccess = true;
+        }
+      }
     }
+    loginSuccess && window.alert("Die eingegebenen Daten sind falsch")
   }
 
 
   public getPersons() {
+    debugger;
     this.personService
       .getPersons()
       .subscribe(persons => {
+        debugger;
         this.persons = persons;
       });
   }
