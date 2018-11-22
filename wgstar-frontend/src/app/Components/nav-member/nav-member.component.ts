@@ -19,6 +19,7 @@ export class NavMemberComponent implements OnInit {
               private personService: PersonService) { }
 
   ngOnInit() {
+    debugger
     this.router.navigate(['/member']);
   }
 

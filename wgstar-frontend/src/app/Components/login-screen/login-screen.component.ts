@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PersonService} from "../../share/service/person.service";
 import {Person} from "../../share/model/person";
-import {AppComponent}from "../../app.component";
-
+import {AppComponent} from "../../app.component";
+import {MatSnackBar} from '@angular/material';
 
 
 @Component({
@@ -13,28 +13,43 @@ import {AppComponent}from "../../app.component";
 export class LoginScreenComponent implements OnInit {
 
   person: Person;
-  loginPerson: Person;
+  loginPerson: Person = new Person();
   persons: Person[] = []
+
   constructor(
-              private personService: PersonService
-  ) { }
+    private personService: PersonService,
+    public snackBar: MatSnackBar
+  ) {
+    this.getPersons();
+  }
 
   ngOnInit() {
-    this.getPersons();
+
   }
 
 
   public checkLogin() {
     let loginSuccess = false;
+    console.log(this.loginPerson)
     for (this.person of this.persons) {
-      if(this.person.email == this.loginPerson.email) {
+      debugger
+      if (this.person.email == this.loginPerson.email) {
         if (this.person.password == this.loginPerson.password) {
-          AppComponent.prototype.isMember = true;
+
           loginSuccess = true;
         }
       }
     }
-    loginSuccess && window.alert("Die eingegebenen Daten sind falsch")
+   if(loginSuccess){
+     AppComponent.prototype.isMember = true;
+     this.snackBar.open("erfolgreich eingeloggt", "", {
+       duration: 2000,
+     });
+   } else{
+     this.snackBar.open("Password oder Email stimmen nicht überein", "", {
+       duration: 2000,
+     });
+   }
   }
 
 
@@ -45,6 +60,7 @@ export class LoginScreenComponent implements OnInit {
         this.persons = persons;
       });
   }
+
   // TODO: isMember in appComponent.ts auf true setzen und member-nav aktivieren
 
 

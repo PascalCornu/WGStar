@@ -1,7 +1,9 @@
 mat-card {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-right: auto;
   width: 30%;
 }
 
@@ -12,4 +14,8 @@ mat-card {
 
 mat-form-field {
   margin-top: 10px!important;
+}
+
+.btnRegistrieren {
+  margin-top: 15px;
 }

@@ -5,6 +5,13 @@ import {Person} from '../model/person';
 import {apiEndpoints} from '../api-endpoints';
 import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
+import {Wg} from '../model/wg';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 
 @Injectable()
@@ -22,6 +29,14 @@ export class PersonService {
       .get<Person[]>(apiEndpoints.getPersons)
       .pipe(
         catchError(this.handleError('getPersons', []))
+      );
+  }
+
+  savePerson(person: Person) {
+    return this.http
+      .post<Wg>(apiEndpoints.savePerson, JSON.stringify(person), httpOptions)
+      .pipe(
+        catchError(this.handleError('savePerson', person))
       );
   }
 
