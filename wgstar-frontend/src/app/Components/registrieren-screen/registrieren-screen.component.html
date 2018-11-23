@@ -1,20 +1,22 @@
-<h1>Tritt WgStar bei und registriere dich</h1>
+<h1>Registriere Dich!</h1>
+
+
 <mat-card>
   <form class="form-registrate">
     <mat-form-field>
-      <input matInput name="vorname" ({ngModel})="creatPerson.firstname" placeholder="Vorname">
+      <input matInput name="vorname" [(ngModel)]="creatPerson.firstname" placeholder="Vorname">
       <mat-error *ngIf="nameFormControl.hasError('required')">
         Es muss ein Vorname angegeben werden
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput ({ngModel})="creatPerson.lastname" placeholder="Nachname" >
+      <input matInput [(ngModel)]="creatPerson.lastname" placeholder="Nachname" name="lastname">
       <mat-error *ngIf="nameFormControl.hasError('required')">
         Es muss ein Nachname angegeben werden
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Email" ({ngModel})="creatPerson.email" [formControl]="emailFormControl">
+      <input matInput placeholder="Email" [(ngModel)]="creatPerson.email" [formControl]="emailFormControl" name="email">
       <mat-hint>vorname.nachname@example.com</mat-hint>
       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
         Eine ungültige E-Mail wurde angegeben
@@ -24,7 +26,7 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput #password type="password" placeholder="Passwort" ({ngModel})="creatPerson.password" [formControl]="passwordFormControl">
+      <input matInput #password type="password" placeholder="Passwort" [(ngModel)]="creatPerson.password" [formControl]="passwordFormControl" name="password">
       <mat-hint>Min 8 Zeichen, Min 1. Gross/Kleinbuchstabe, Min. 1 Zahl</mat-hint>
       <mat-error *ngIf="passwordFormControl.hasError && !passwordFormControl.hasError('required')">
         Eine ungültiges Passwort wurde angegeben

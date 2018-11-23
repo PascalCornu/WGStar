@@ -16,12 +16,12 @@ public class WgRestController {
     @Autowired
     private WgRepository wgRepository;
 
-    @RequestMapping(value = "/api/wg/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/wg/all", method = RequestMethod.GET)
     public List<WG> getAllWg() {
         return wgRepository.findAll();
     }
 
-    @RequestMapping(value = "/api/wg/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/wg/save", method = RequestMethod.POST)
     public void saveWg(@RequestBody Map<String, Object> payload) {
         /*WG wg = wgRepository.getOne((Long) payload.get("id"));
         if(wg == null){

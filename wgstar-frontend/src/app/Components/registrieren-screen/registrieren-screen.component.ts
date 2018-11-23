@@ -11,7 +11,7 @@ import {Person} from '../../share/model/person';
 })
 export class RegistrierenScreenComponent implements OnInit {
 
-  creatPerson: Person;
+  creatPerson: Person = new Person();
 
   constructor(
     private personService: PersonService
@@ -41,6 +41,7 @@ export class RegistrierenScreenComponent implements OnInit {
 
 
   savePerson(){
+    console.log(this.creatPerson);
     this.personService.savePerson(this.creatPerson)
       .subscribe();
   }

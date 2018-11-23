@@ -12,4 +12,8 @@ export class MemberZoneComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout(){
+    localStorage.setItem('isMember', 'false');
+    window.location.reload();
+  }
 }
