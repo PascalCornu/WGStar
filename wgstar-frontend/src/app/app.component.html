@@ -1,5 +1,5 @@
-<app-nav *ngIf="!isMember"></app-nav>
-<app-nav-member *ngIf="isMember"></app-nav-member>
+<app-nav *ngIf="isMember === 'false'"></app-nav>
+<app-nav-member *ngIf="isMember === 'true'"></app-nav-member>
 <main>
   <div class="container">
     <router-outlet></router-outlet>

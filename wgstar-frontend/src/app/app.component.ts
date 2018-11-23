@@ -8,8 +8,9 @@ import { Component } from '@angular/core';
 
 
 export class AppComponent {
+
   title = 'WGStar-Frontend';
-  public isMember = false;
+  public isMember = localStorage.getItem('isMember');
 }
 
 

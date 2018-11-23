@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {PersonService} from "../../share/service/person.service";
-import {Person} from "../../share/model/person";
-import {AppComponent} from "../../app.component";
+import {PersonService} from '../../share/service/person.service';
+import {Person} from '../../share/model/person';
+import {AppComponent} from '../../app.component';
 import {MatSnackBar} from '@angular/material';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class LoginScreenComponent implements OnInit {
 
   constructor(
     private personService: PersonService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private router: Router,
   ) {
     this.getPersons();
   }
@@ -35,18 +37,19 @@ export class LoginScreenComponent implements OnInit {
       debugger
       if (this.person.email == this.loginPerson.email) {
         if (this.person.password == this.loginPerson.password) {
-
           loginSuccess = true;
         }
       }
     }
    if(loginSuccess){
-     AppComponent.prototype.isMember = true;
-     this.snackBar.open("erfolgreich eingeloggt", "", {
+     localStorage.setItem('isMember','true');
+
+     this.snackBar.open('erfolgreich eingeloggt', '', {
        duration: 2000,
      });
+     window.location.reload();
    } else{
-     this.snackBar.open("Password oder Email stimmen nicht überein", "", {
+     this.snackBar.open('Password oder Email stimmen nicht überein', '', {
        duration: 2000,
      });
    }
