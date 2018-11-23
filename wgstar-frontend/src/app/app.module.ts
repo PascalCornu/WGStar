@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {routing} from './app.routes';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavComponent } from './Components/nav-login/nav.component';
@@ -136,8 +137,8 @@ import {WgCreateComponent} from './Components/member-zone/wg-create/wg-create.co
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
-
+    MatPaginatorModule,
+    FormsModule
   ],
   providers: [
     PersonService,
