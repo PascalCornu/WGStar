@@ -1,17 +1,21 @@
 <h1>Registriere Dich!</h1>
-
-
 <mat-card>
   <form class="form-registrate">
     <mat-form-field>
       <input matInput name="vorname" [(ngModel)]="creatPerson.firstname" placeholder="Vorname">
-      <mat-error *ngIf="nameFormControl.hasError('required')">
+      <mat-error *ngIf="firstnameFormControl.hasError && !firstnameFormControl.hasError('required')">
+        Es wurde ein ungültiger Vorname angegeben
+      </mat-error>
+      <mat-error *ngIf="firstnameFormControl.hasError('required')">
         Es muss ein Vorname angegeben werden
       </mat-error>
     </mat-form-field>
     <mat-form-field>
       <input matInput [(ngModel)]="creatPerson.lastname" placeholder="Nachname" name="lastname">
-      <mat-error *ngIf="nameFormControl.hasError('required')">
+      <mat-error *ngIf="lastnameFormControl.hasError && !lastnameFormControl.hasError('required')">
+        Es wurde ein ungültiger Nachname angegeben
+      </mat-error>
+      <mat-error *ngIf="lastnameFormControl.hasError('required')">
         Es muss ein Nachname angegeben werden
       </mat-error>
     </mat-form-field>
@@ -41,7 +45,7 @@
       <mat-error *ngIf="passwordRepeatFormControl.hasError('required')">
         Das Passwort muss bestätigt werden
       </mat-error>
-      <mat-error *ngIf="!samePasswords(passwordRepeat.value && password.value) && !passwordRepeatFormControl.hasError('required')">
+      <mat-error *ngIf="!samePassword(passwordRepeat.value && password.value) && !passwordRepeatFormControl.hasError('required')">
         Ein anderes Passwort wurde angegeben
       </mat-error>
     </mat-form-field>
