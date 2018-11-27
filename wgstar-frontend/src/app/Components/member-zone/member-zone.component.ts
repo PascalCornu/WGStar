@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Person} from '../../share/model/person';
+import {PersonLoginService} from '../../share/service/personLogin.service';
 
 @Component({
   selector: 'app-member-zone',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemberZoneComponent implements OnInit {
 
-  constructor() { }
+  private personLogin: Person;
+
+  constructor(personLognService: PersonLoginService) { }
 
   ngOnInit() {
   }

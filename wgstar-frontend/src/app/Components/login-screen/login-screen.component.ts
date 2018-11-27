@@ -39,7 +39,7 @@ export class LoginScreenComponent implements OnInit {
       debugger
       if (this.person.email == this.loginPerson.email) {
         if (this.person.password == this.loginPerson.password) {
-          this
+          this.personLoginService.saveLoginPerson(this.person);
           loginSuccess = true;
         }
       }
