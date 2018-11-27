@@ -31,7 +31,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     this.router.navigate(['/login']);
-    this.getPersons()
+    this.getPersons();
   }
 
   public getPersons() {

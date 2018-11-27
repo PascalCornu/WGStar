@@ -24,7 +24,6 @@ public class PersonRestController {
     @Autowired
     private PersonRepository personRepository;
 
-
     @RequestMapping(value = "/person/all", method = RequestMethod.GET)
     public ResponseEntity<?> getPersonen() throws JsonProcessingException {
         List<Person> list = personRepository.findAll();
@@ -32,7 +31,6 @@ public class PersonRestController {
         String result = JsonUtil.writeValueAsString(collection);
         return new ResponseEntity<>(result, HttpUtils.headers(), HttpStatus.OK);
     }
-
 
     @RequestMapping(value = "/person/save", method = RequestMethod.POST)
     public void saveWg(@RequestBody Map<String, Object> payload) {

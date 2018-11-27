@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import {FormControl, Validators} from '@angular/forms';
+import {PersonService} from '../../share/service/person.service';
+import {Person} from '../../share/model/person';
 
 @Component({
   selector: 'app-registrieren-screen',
@@ -9,7 +11,11 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class RegistrierenScreenComponent implements OnInit {
 
-  constructor() { }
+  creatPerson: Person = new Person();
+
+  constructor(
+    private personService: PersonService
+  ) { }
 
   ngOnInit() {
   }
@@ -57,4 +63,11 @@ export class RegistrierenScreenComponent implements OnInit {
     Validators.required,
   ]);
 
+
+
+  savePerson(){
+    console.log(this.creatPerson);
+    this.personService.savePerson(this.creatPerson)
+      .subscribe();
+  }
 }

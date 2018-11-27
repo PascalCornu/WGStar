@@ -16,6 +16,7 @@ public class PersonView {
     String lastname;
     String firstname;
     String email;
+    String password;
     Long version;
 
     public static PersonView from(Person person) {
@@ -24,6 +25,7 @@ public class PersonView {
                 .lastname(person.getLastname())
                 .firstname(person.getFirstname())
                 .email(person.getEmail())
+                .password(person.getPassword())
                 .build();
     }
 
@@ -33,6 +35,7 @@ public class PersonView {
         person.setLastname(personView.getLastname());
         person.setFirstname(personView.getFirstname());
         person.setEmail(personView.getEmail());
+        person.setPassword(personView.getPassword());
         return person;
     }
 
