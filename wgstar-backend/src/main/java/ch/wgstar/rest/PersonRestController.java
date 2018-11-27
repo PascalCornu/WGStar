@@ -1,22 +1,15 @@
 package ch.wgstar.rest;
 
-import ch.wgstar.model.Person;
 import ch.wgstar.repository.PersonRepository;
 import ch.wgstar.rest.view.PersonView;
-import ch.wgstar.util.JsonUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 public class PersonRestController {
@@ -25,24 +18,17 @@ public class PersonRestController {
     private PersonRepository personRepository;
 
     @RequestMapping(value = "/person/all", method = RequestMethod.GET)
-    public ResponseEntity<?> getPersonen() throws JsonProcessingException {
-        List<Person> list = personRepository.findAll();
-        Set<PersonView> collection = list.stream().map(PersonView::from).collect(Collectors.toSet());
-        String result = JsonUtil.writeValueAsString(collection);
-        return new ResponseEntity<>(result, HttpUtils.headers(), HttpStatus.OK);
+    public Collection<PersonView> getPersonen() {
+        return PersonView.toPersonViews(personRepository.findAll());
+    }
+
+    @RequestMapping(value = "/person/id", method = RequestMethod.GET)
+    public Collection<PersonView> getPersonById() {
+        return PersonView.toPersonViews(personRepository.findAll());
     }
 
     @RequestMapping(value = "/person/save", method = RequestMethod.POST)
-    public void saveWg(@RequestBody Map<String, Object> payload) {
-        /*Person person = personRepository.getOne((Long) payload.get("id"));
-        if(person == null){
-            person = new Person();
-        }*/
-        Person person = new Person();
-        person.setFirstname((String) payload.get("firstname"));
-        person.setLastname((String) payload.get("lastname"));
-        person.setEmail((String) payload.get("email"));
-        person.setPassword((String) payload.get("password"));
-        personRepository.save(person);
+    public PersonView saveWg(@RequestBody Map<String, Object> payload) {
+        return PersonView.from(personRepository.getOne((Long) payload.get("id")));
     }
 }

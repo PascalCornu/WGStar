@@ -3,9 +3,14 @@ package ch.wgstar.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,4 +30,10 @@ public class WG extends BaseEntity{
 
     @Min(1)
     private int rooms;
+
+    @ManyToOne
+    private Person owner;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Person> personList;
 }

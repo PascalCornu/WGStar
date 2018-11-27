@@ -1,6 +1,7 @@
 package ch.wgstar.rest.view;
 
 import ch.wgstar.model.Person;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
 
@@ -12,11 +13,22 @@ import java.util.stream.Collectors;
 @Value
 @Builder
 public class PersonView {
+    @JsonProperty
     Long id;
+
+    @JsonProperty
     String lastname;
+
+    @JsonProperty
     String firstname;
+
+    @JsonProperty
     String email;
+
+    @JsonProperty
     String password;
+
+    @JsonProperty
     Long version;
 
     public static PersonView from(Person person) {
@@ -29,7 +41,7 @@ public class PersonView {
                 .build();
     }
 
-    private static Person toPerson(PersonView personView) {
+    public static Person toPerson(PersonView personView) {
         Person person = new Person();
         person.setId(personView.getId());
         person.setLastname(personView.getLastname());
@@ -39,14 +51,15 @@ public class PersonView {
         return person;
     }
 
-    public static List<Person> toPersonen(Collection<PersonView> rolleViews) {
-        if (rolleViews != null) {
-            return rolleViews.stream().map(PersonView::toPerson).collect(Collectors.toList());
-        }
-        return Collections.EMPTY_LIST;
+    public static Collection<PersonView> toPersonViews(List<Person> personen){
+        return personen.stream().map(PersonView::from).collect(Collectors.toList());
     }
 
-    public static List<Person> toRollen(Collection<PersonView> personViews) {
-        return PersonView.toPersonen(personViews);
+    public static List<Person> toPersonen(Collection<PersonView> personViews) {
+        if (personViews != null) {
+            return personViews.stream().map(PersonView::toPerson).collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
+
 }
