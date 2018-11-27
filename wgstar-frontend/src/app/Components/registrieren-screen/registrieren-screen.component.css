@@ -5,6 +5,7 @@ mat-card {
   margin-right: auto;
   margin-right: auto;
   width: 30%;
+  min-width: 500px;
 }
 
 .form-registrate {
@@ -13,7 +14,11 @@ mat-card {
 }
 
 mat-form-field {
-  margin-top: 10px!important;
+  margin: 7px 0!important;
+}
+
+.button-submit {
+  margin: 10px 0;
 }
 
 .btnRegistrieren {
