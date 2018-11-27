@@ -6,9 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
+
 export class AppComponent {
+
   title = 'WGStar-Frontend';
-  isMember = false;
+  public isMember = localStorage.getItem('isMember');
 }
 
 

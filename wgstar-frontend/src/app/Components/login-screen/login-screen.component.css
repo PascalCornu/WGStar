@@ -3,11 +3,16 @@
   display: flex;
 }
 
-.mat-card {
-  width: 30%;
-  margin: 20px;
-}
+
 
 mat-form-field {
   margin-top: 5px!important;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
 }
