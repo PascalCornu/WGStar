@@ -49,6 +49,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {WgService} from './share/service/wg.service';
 import {WgCreateComponent} from './Components/member-zone/wg-create/wg-create.component';
+import {PersonLoginService} from './share/service/personLogin.service';
 
 
 @NgModule({
@@ -141,6 +142,7 @@ import {WgCreateComponent} from './Components/member-zone/wg-create/wg-create.co
   ],
   providers: [
     PersonService,
+    PersonLoginService,
     WgService,
     HttpErrorHandler,
     MessageService,
