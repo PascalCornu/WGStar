@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {routing} from './app.routes';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavComponent } from './Components/nav-login/nav.component';
@@ -12,8 +11,6 @@ import {HttpErrorHandler} from './share/service/http-error-handler.service';
 import { MemberZoneComponent } from './Components/member-zone/member-zone.component';
 import { NavMemberComponent } from './Components/nav-member/nav-member.component';
 import { RegistrierenScreenComponent } from './Components/registrieren-screen/registrieren-screen.component';
-import { WgCreateComponent } from './Components/member-zone/wg-create/wg-create.component';
-import {WgService} from './share/service/wg.service';
 
 import {MatHint } from '@angular/material';
 import {MatError} from "@angular/material/typings/form-field";
@@ -49,6 +46,12 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {WgService} from './share/service/wg.service';
+import {WgCreateComponent} from './Components/member-zone/wg-create/wg-create.component';
+import {PersonLoginService} from './share/service/personLogin.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +67,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     BrowserModule,
     HttpClientModule,
     routing,
+    FormsModule,
     MatButtonModule,
     MatCheckboxModule,
     BrowserAnimationsModule,
@@ -138,10 +142,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   ],
   providers: [
     PersonService,
+    PersonLoginService,
     WgService,
     HttpErrorHandler,
     MessageService,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

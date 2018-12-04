@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import {FormControl, Validators} from '@angular/forms';
+import {PersonService} from '../../share/service/person.service';
+import {Person} from '../../share/model/person';
 
 @Component({
   selector: 'app-registrieren-screen',
@@ -9,30 +11,32 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class RegistrierenScreenComponent implements OnInit {
 
-  constructor() { }
+  createPerson: Person = new Person();
+
+  constructor(
+    private personService: PersonService
+  ) { }
 
   ngOnInit() {
   }
 
-  errors(password: string, passwordRepeat: string): boolean{
-    if(!this.emailFormControl.hasError &&
-      !this.firstnameFormControl.hasError &&
-      !this.lastnameFormControl.hasError &&
-      !this.passwordFormControl.hasError &&
-      !this.passwordRepeatFormControl.hasError &&
-      password === passwordRepeat){
-      return false;
-    }
+  // errors(password: string, passwordRepeat: string): boolean{
+  //   if(!this.emailFormControl.hasError &&
+  //     !this.firstnameFormControl.hasError &&
+  //     !this.lastnameFormControl.hasError &&
+  //     !this.passwordFormControl.hasError &&
+  //     !this.passwordRepeatFormControl.hasError &&
+  //     password === passwordRepeat){
+  //     return false;
+  //   }
+  //
+  //   return true;
+  // }
 
-    return true;
-  }
-
-  samePassword(password: string, passwordRepeat: string): boolean {
-    if (password === passwordRepeat){
-      return true;
-    }
-    return false;
-  }
+  // samePassword(password: string, passwordRepeat: string): boolean {
+  //   console.log("test");
+  //   return false;
+  // }
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -55,8 +59,15 @@ export class RegistrierenScreenComponent implements OnInit {
     Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/),
   ]);
 
-  passwordRepeatFormControl = new FormControl( '', [
-    Validators.required,
-  ]);
+  // passwordRepeatFormControl = new FormControl( '', [
+  //   Validators.required,
+  // ]);
 
+
+
+  savePerson(){
+    console.log(this.createPerson);
+    this.personService.savePerson(this.createPerson)
+      .subscribe();
+  }
 }

@@ -1,7 +1,9 @@
 mat-card {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-right: auto;
   width: 30%;
   min-width: 500px;
 }
@@ -17,4 +19,8 @@ mat-form-field {
 
 .button-submit {
   margin: 10px 0;
+}
+
+.btnRegistrieren {
+  margin-top: 15px;
 }

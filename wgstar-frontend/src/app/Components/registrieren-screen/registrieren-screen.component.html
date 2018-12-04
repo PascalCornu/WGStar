@@ -1,19 +1,20 @@
+<h1>Registriere Dich!</h1>
 <mat-card>
   <form class="form-registrate">
     <mat-form-field>
-      <input matInput placeholder="Vorname" [formControl]="firstnameFormControl">
-      <mat-hint>Name ohne Sonderzeichen</mat-hint>
-      <mat-error *ngIf="firstnameFormControl.hasError('pattern') && !firstnameFormControl.hasError('required')">
-        Es wurde ein ungültiger Vorname angegebn
+      <input matInput name="vorname" [(ngModel)]="createPerson.firstname" placeholder="Vorname">
+      <mat-hint>Ohne Sonderzeichen oder Zahlen</mat-hint>
+      <mat-error *ngIf="firstnameFormControl.hasError && !firstnameFormControl.hasError('required')">
+        Es wurde ein ungültiger Vorname angegeben
       </mat-error>
       <mat-error *ngIf="firstnameFormControl.hasError('required')">
         Es muss ein Vorname angegeben werden
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Nachname" [formControl]="lastnameFormControl">
-      <mat-hint>Name ohne Sonderzeichen</mat-hint>
-      <mat-error *ngIf="lastnameFormControl.hasError('pattern') && !lastnameFormControl.hasError('required')">
+      <input matInput [(ngModel)]="createPerson.lastname" placeholder="Nachname" name="lastname">
+      <mat-hint>Ohne Sonderzeichen oder Zahlen</mat-hint>
+      <mat-error *ngIf="lastnameFormControl.hasError && !lastnameFormControl.hasError('required')">
         Es wurde ein ungültiger Nachname angegeben
       </mat-error>
       <mat-error *ngIf="lastnameFormControl.hasError('required')">
@@ -21,7 +22,7 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Email" [formControl]="emailFormControl">
+      <input matInput placeholder="Email" [(ngModel)]="createPerson.email" [formControl]="emailFormControl" name="email">
       <mat-hint>vorname.nachname@example.com</mat-hint>
       <mat-error *ngIf="emailFormControl.hasError && !emailFormControl.hasError('required')">
         Eine ungültige E-Mail wurde angegeben
@@ -31,7 +32,7 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput #password type="password" placeholder="Passwort" [formControl]="passwordFormControl">
+      <input matInput #password type="password" placeholder="Passwort" [(ngModel)]="createPerson.password" [formControl]="passwordFormControl" name="password">
       <mat-hint>Min 8 Zeichen, Min 1. Gross/Kleinbuchstabe, Min. 1 Zahl</mat-hint>
       <mat-error *ngIf="passwordFormControl.hasError && !passwordFormControl.hasError('required')">
         Ein ungültiges Passwort wurde angegeben
@@ -40,16 +41,16 @@
         Es muss ein Passwort angegeben werden
       </mat-error>
     </mat-form-field>
-    <mat-form-field>
-      <input matInput #passwordRepeat type="password" placeholder="Passwort bestätigen" [formControl]="passwordRepeatFormControl">
-      <mat-hint>Wiederholen sie das Passwort, welches zuvor angegeben wurde</mat-hint>
-      <mat-error *ngIf="samePassword(password.value, passwordRepeat.value) && !passwordRepeatFormControl.hasError('required')">
-        Ein anderes Passwort wurde angegeben
-      </mat-error>
-      <mat-error *ngIf="passwordRepeatFormControl.hasError('required')">
-        Das Passwort muss bestätigt werden
-      </mat-error>
-    </mat-form-field>
-    <button [disabled]="!errors(password.value, passwordRepeat.value)" class="button-submit" mat-button>Registrieren</button>
+    <!--<mat-form-field>-->
+      <!--<input required matInput #passwordRepeat type="password" placeholder="Passwort bestätigen" [formControl]="passwordRepeatFormControl">-->
+      <!--<mat-hint>Wiederholen sie das Passwort, welches zuvor angegeben wurde</mat-hint>-->
+      <!--<mat-error *ngIf="passwordRepeatFormControl.hasError('required')">-->
+        <!--Das Passwort muss bestätigt werden-->
+      <!--</mat-error>-->
+      <!--<mat-error *ngIf="!samePassword(passwordRepeat.value && password.value) && !passwordRepeatFormControl.hasError('required')">-->
+        <!--Ein anderes Passwort wurde angegeben-->
+      <!--</mat-error>-->
+    <!--</mat-form-field>-->
+    <button mat-button class="btnRegistrieren" (click)="savePerson()">Registrieren</button>
   </form>
 </mat-card>
