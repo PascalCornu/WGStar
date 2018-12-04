@@ -11,9 +11,12 @@ export class MemberZoneComponent implements OnInit {
 
   private personLogin: Person;
 
-  constructor(personLognService: PersonLoginService) { }
+  constructor(private personLoginService: PersonLoginService) { }
 
   ngOnInit() {
+    debugger
+    this.personLogin = this.personLoginService.getloginPerson();
+    console.log(this.personLogin);
   }
 
   logout(){
