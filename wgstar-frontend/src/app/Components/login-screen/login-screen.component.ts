@@ -4,6 +4,7 @@ import {Person} from '../../share/model/person';
 import {AppComponent} from '../../app.component';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
+import {PersonLoginService} from '../../share/service/personLogin.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class LoginScreenComponent implements OnInit {
 
   constructor(
     private personService: PersonService,
+    private personLoginService: PersonLoginService,
     public snackBar: MatSnackBar,
     private router: Router,
   ) {
@@ -34,9 +36,10 @@ export class LoginScreenComponent implements OnInit {
     let loginSuccess = false;
     console.log(this.loginPerson)
     for (this.person of this.persons) {
-      debugger
       if (this.person.email == this.loginPerson.email) {
         if (this.person.password == this.loginPerson.password) {
+          debugger
+          this.personLoginService.saveLoginPerson(this.person);
           loginSuccess = true;
         }
       }

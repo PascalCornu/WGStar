@@ -11,7 +11,7 @@ import {Person} from '../../share/model/person';
 })
 export class RegistrierenScreenComponent implements OnInit {
 
-  creatPerson: Person = new Person();
+  createPerson: Person = new Person();
 
   constructor(
     private personService: PersonService
@@ -20,23 +20,23 @@ export class RegistrierenScreenComponent implements OnInit {
   ngOnInit() {
   }
 
-  errors(password: string, passwordRepeat: string): boolean{
-    if(!this.emailFormControl.hasError &&
-      !this.firstnameFormControl.hasError &&
-      !this.lastnameFormControl.hasError &&
-      !this.passwordFormControl.hasError &&
-      !this.passwordRepeatFormControl.hasError &&
-      password === passwordRepeat){
-      return false;
-    }
+  // errors(password: string, passwordRepeat: string): boolean{
+  //   if(!this.emailFormControl.hasError &&
+  //     !this.firstnameFormControl.hasError &&
+  //     !this.lastnameFormControl.hasError &&
+  //     !this.passwordFormControl.hasError &&
+  //     !this.passwordRepeatFormControl.hasError &&
+  //     password === passwordRepeat){
+  //     return false;
+  //   }
+  //
+  //   return true;
+  // }
 
-    return true;
-  }
-
-  samePassword(password: string, passwordRepeat: string): boolean {
-    console.log("test");
-    return false;
-  }
+  // samePassword(password: string, passwordRepeat: string): boolean {
+  //   console.log("test");
+  //   return false;
+  // }
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -59,15 +59,15 @@ export class RegistrierenScreenComponent implements OnInit {
     Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/),
   ]);
 
-  passwordRepeatFormControl = new FormControl( '', [
-    Validators.required,
-  ]);
+  // passwordRepeatFormControl = new FormControl( '', [
+  //   Validators.required,
+  // ]);
 
 
 
   savePerson(){
-    console.log(this.creatPerson);
-    this.personService.savePerson(this.creatPerson)
+    console.log(this.createPerson);
+    this.personService.savePerson(this.createPerson)
       .subscribe();
   }
 }
