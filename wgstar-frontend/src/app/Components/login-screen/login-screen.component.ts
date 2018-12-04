@@ -38,6 +38,7 @@ export class LoginScreenComponent implements OnInit {
     for (this.person of this.persons) {
       if (this.person.email == this.loginPerson.email) {
         if (this.person.password == this.loginPerson.password) {
+          debugger
           this.personLoginService.saveLoginPerson(this.person);
           loginSuccess = true;
         }

@@ -40,5 +40,13 @@ export class PersonService {
       );
   }
 
+  getPersonsById(): Observable<Person[]> {
+    return this.http
+      .get<Person[]>(apiEndpoints.getPersons)
+      .pipe(
+        catchError(this.handleError('getPersons', []))
+      );
+  }
+
 
 }
