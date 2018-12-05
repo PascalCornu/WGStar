@@ -1,6 +1,8 @@
 import {environment} from '../../environments/environment';
 
-
+/**
+ * API-Endpunkte für Backend-calls
+ */
 export const apiEndpoints = {
   getPersons: environment.BACKEND_URL + '/person/all',
   savePerson: environment.BACKEND_URL + '/person/save',

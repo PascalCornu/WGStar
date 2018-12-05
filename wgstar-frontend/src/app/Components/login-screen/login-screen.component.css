@@ -1,3 +1,9 @@
+/**
+ * Autor: Pascal Cornu
+ * Version: 1.0
+ * Datum: 13.11.2018
+ * eigenes Css für die Login Komponente
+ */
 .form-login {
   flex-direction: column;
   display: flex;

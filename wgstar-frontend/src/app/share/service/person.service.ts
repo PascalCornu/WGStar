@@ -7,23 +7,40 @@ import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
 import {Wg} from '../model/wg';
 
+/**
+ * Http-Optionen, die bei einem Call an Backend übergeben werden.
+ */
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
 };
 
-
+/**
+ * Autor: Yves Stalder
+ * Version: 1.0
+ * Datum: 16.10.2018
+ * Service für Personen
+ */
 @Injectable()
 export class PersonService {
+  /**
+   * Typ der HandleError Methode
+   */
   private handleError: HandleError;
 
+  /**
+   * erstellt ein ErrorHandler für die Person
+   */
   constructor(private http: HttpClient,
               private httpErrorHandler: HttpErrorHandler) {
     this.handleError = httpErrorHandler.createHandleError('Person');
   }
 
 
+  /**
+   * Liefert alle Personen zurück
+   */
   getPersons(): Observable<Person[]> {
     return this.http
       .get<Person[]>(apiEndpoints.getPersons)
@@ -32,6 +49,9 @@ export class PersonService {
       );
   }
 
+  /**
+   * Speichert alle Personen
+   */
   savePerson(person: Person) {
     return this.http
       .post<Wg>(apiEndpoints.savePerson, JSON.stringify(person), httpOptions)
@@ -40,6 +60,9 @@ export class PersonService {
       );
   }
 
+  /**
+   * Holt eine Person anhand der ID
+   */
   getPersonsById(): Observable<Person[]> {
     return this.http
       .get<Person[]>(apiEndpoints.getPersons)
