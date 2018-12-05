@@ -18,12 +18,26 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Autor: Florian Borter
+ * Version: 1.0
+ * Datum: 16.10.2018
+ * RestController für Personen
+ */
 @RestController
 public class PersonRestController {
 
+    /**
+     * Personrepository um Daten zu speichern, zu holen etc.
+     */
     @Autowired
     private PersonRepository personRepository;
 
+    /**
+     * Liefert alle Personen zurück
+     * @return alle Personen
+     * @throws JsonProcessingException
+     */
     @RequestMapping(value = "/person/all", method = RequestMethod.GET)
     public ResponseEntity<?> getPersonen() throws JsonProcessingException {
         List<Person> list = personRepository.findAll();
@@ -32,12 +46,12 @@ public class PersonRestController {
         return new ResponseEntity<>(result, HttpUtils.headers(), HttpStatus.OK);
     }
 
+    /**
+     * Speichert eine Person ab
+     * @param payload übergebene Daten
+     */
     @RequestMapping(value = "/person/save", method = RequestMethod.POST)
-    public void saveWg(@RequestBody Map<String, Object> payload) {
-        /*Person person = personRepository.getOne((Long) payload.get("id"));
-        if(person == null){
-            person = new Person();
-        }*/
+    public void savePerson(@RequestBody Map<String, Object> payload) {
         Person person = new Person();
         person.setFirstname((String) payload.get("firstname"));
         person.setLastname((String) payload.get("lastname"));

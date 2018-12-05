@@ -6,6 +6,12 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.validation.constraints.Size;
 
+/**
+ * Autor: Florian Borter
+ * Version: 1.0
+ * Datum: 16.10.2018
+ * Person Entität
+ */
 @Entity
 @Getter
 @Setter

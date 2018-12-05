@@ -7,7 +7,9 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'WGStar-Frontend';
+  /**
+   * schaut, ob eine person angemeldet ist.
+   */
   public isMember = localStorage.getItem('isMember');
 }
 

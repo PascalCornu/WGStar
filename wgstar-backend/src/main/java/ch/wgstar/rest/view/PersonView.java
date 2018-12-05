@@ -4,11 +4,12 @@ import ch.wgstar.model.Person;
 import lombok.Builder;
 import lombok.Value;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
+/**
+ * Autor: Florian Borter
+ * Version: 1.0
+ * Datum: 23.10.2018
+ * Person View ist ein DTO für ein Personen Objekt
+ */
 @Value
 @Builder
 public class PersonView {
@@ -19,6 +20,11 @@ public class PersonView {
     String password;
     Long version;
 
+    /**
+     * Erstllt einen View bzw. ein DTO vom Personenobjekt
+     * @param person das Objekt zur Konvertierung
+     * @return das DTO
+     */
     public static PersonView from(Person person) {
         return builder()
                 .id(person.getId())
@@ -27,26 +33,5 @@ public class PersonView {
                 .email(person.getEmail())
                 .password(person.getPassword())
                 .build();
-    }
-
-    private static Person toPerson(PersonView personView) {
-        Person person = new Person();
-        person.setId(personView.getId());
-        person.setLastname(personView.getLastname());
-        person.setFirstname(personView.getFirstname());
-        person.setEmail(personView.getEmail());
-        person.setPassword(personView.getPassword());
-        return person;
-    }
-
-    public static List<Person> toPersonen(Collection<PersonView> rolleViews) {
-        if (rolleViews != null) {
-            return rolleViews.stream().map(PersonView::toPerson).collect(Collectors.toList());
-        }
-        return Collections.EMPTY_LIST;
-    }
-
-    public static List<Person> toRollen(Collection<PersonView> personViews) {
-        return PersonView.toPersonen(personViews);
     }
 }

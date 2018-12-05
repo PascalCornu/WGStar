@@ -11,22 +11,35 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Autor: Florian Borter
+ * Version: 1.0
+ * Datum: 20.11.2018
+ * RestController für WGs
+ */
 @RestController
 public class WgRestController {
+    /**
+     * WgRepo zum speichern und lesen aus der DB
+     */
     @Autowired
     private WgRepository wgRepository;
 
+    /**
+     * Holt alle Wgs
+     * @return wg
+     */
     @RequestMapping(value = "/wg/all", method = RequestMethod.GET)
     public List<WG> getAllWg() {
         return wgRepository.findAll();
     }
 
+    /**
+     * speichert eine WG
+     * @param payload Daten vom Frontend
+     */
     @RequestMapping(value = "/wg/save", method = RequestMethod.POST)
     public void saveWg(@RequestBody Map<String, Object> payload) {
-        /*WG wg = wgRepository.getOne((Long) payload.get("id"));
-        if(wg == null){
-            wg = new WG();
-        }*/
         WG wg = new WG();
         wg.setName((String) payload.get("name"));
         wg.setAddress((String) payload.get("address"));
