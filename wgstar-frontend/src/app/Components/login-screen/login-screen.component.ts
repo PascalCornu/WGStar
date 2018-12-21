@@ -1,10 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {PersonService} from '../../share/service/person.service';
 import {Person} from '../../share/model/person';
-import {AppComponent} from '../../app.component';
 import {MatSnackBar} from '@angular/material';
-import {Router} from '@angular/router';
+import {PersonLoginService} from '../../share/service/personLogin.service';
 
+/**
+ * Autor: Pascal Cornu
+ * Version: 1.0
+ * Datum: 13.11.2018
+ * Komponente für die Anzeige des LoginScreens
+ */
 
 @Component({
   selector: 'app-login-screen',
@@ -13,30 +18,38 @@ import {Router} from '@angular/router';
 })
 export class LoginScreenComponent implements OnInit {
 
-  person: Person;
+  /**
+   * Person, welche sich einloggen will
+   */
   loginPerson: Person = new Person();
-  persons: Person[] = []
+  /**
+   * alle Personen, welche es gibt
+   */
+  persons: Person[] = [];
 
   constructor(
     private personService: PersonService,
+    private personLoginService: PersonLoginService,
     public snackBar: MatSnackBar,
-    private router: Router,
   ) {
+  }
+
+  /**
+   * holt alle Personen
+   */
+  ngOnInit() {
     this.getPersons();
   }
 
-  ngOnInit() {
-
-  }
-
-
+  /**
+   * überprüft die Logindaten, ob sie korrekt sind
+   */
   public checkLogin() {
     let loginSuccess = false;
-    console.log(this.loginPerson)
-    for (this.person of this.persons) {
-      debugger
-      if (this.person.email == this.loginPerson.email) {
-        if (this.person.password == this.loginPerson.password) {
+    for (let person of this.persons) {
+      if (person.email == this.loginPerson.email) {
+        if (person.password == this.loginPerson.password) {
+          this.personLoginService.saveLoginPerson(person);
           loginSuccess = true;
         }
       }
@@ -55,7 +68,9 @@ export class LoginScreenComponent implements OnInit {
    }
   }
 
-
+  /**
+   * holt alle Personen aus dem Backend
+   */
   public getPersons() {
     this.personService
       .getPersons()

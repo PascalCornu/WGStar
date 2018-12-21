@@ -12,6 +12,12 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+/**
+ * Autor: Florian Borter
+ * Version: 1.0
+ * Datum: 16.10.2018
+ * WG Entität
+ */
 @Entity
 @Getter
 @Setter

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {routing} from './app.routes';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavComponent } from './Components/nav-login/nav.component';
 import { LoginScreenComponent } from './Components/login-screen/login-screen.component';
@@ -12,8 +12,6 @@ import { MemberZoneComponent } from './Components/member-zone/member-zone.compon
 import { NavMemberComponent } from './Components/nav-member/nav-member.component';
 import { RegistrierenScreenComponent } from './Components/registrieren-screen/registrieren-screen.component';
 
-import {MatHint } from '@angular/material';
-import {MatError} from "@angular/material/typings/form-field";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
@@ -49,8 +47,14 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {WgService} from './share/service/wg.service';
 import {WgCreateComponent} from './Components/member-zone/wg-create/wg-create.component';
+import {PersonLoginService} from './share/service/personLogin.service';
 
-
+/**
+ * Autor: Yves Stalder
+ * Version: 1.0
+ * Datum: 16.10.2018
+ * Imports und deklarationen
+ */
 @NgModule({
   declarations: [
     AppComponent,
@@ -136,11 +140,12 @@ import {WgCreateComponent} from './Components/member-zone/wg-create/wg-create.co
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
-
+    MatPaginatorModule,
+    FormsModule
   ],
   providers: [
     PersonService,
+    PersonLoginService,
     WgService,
     HttpErrorHandler,
     MessageService,

@@ -5,6 +5,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * Autor: Florian Borter
+ * Version: 1.0
+ * Datum: 16.10.2018
+ * Basis Entität für Klssen
+ */
 @Getter
 @Setter
 @MappedSuperclass
