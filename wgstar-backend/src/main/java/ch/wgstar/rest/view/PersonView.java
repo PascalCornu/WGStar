@@ -4,6 +4,11 @@ import ch.wgstar.model.Person;
 import lombok.Builder;
 import lombok.Value;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Autor: Florian Borter
  * Version: 1.0
@@ -18,6 +23,7 @@ public class PersonView {
     String firstname;
     String email;
     String password;
+    boolean hasInvitations;
     Long version;
 
     /**
@@ -33,5 +39,27 @@ public class PersonView {
                 .email(person.getEmail())
                 .password(person.getPassword())
                 .build();
+    }
+
+    public static Person toPerson(PersonView personView) {
+        Person person = new Person();
+        person.setId(personView.getId());
+        person.setLastname(personView.getLastname());
+        person.setFirstname(personView.getFirstname());
+        person.setEmail(personView.getEmail());
+        person.setPassword(personView.getPassword());
+        person.setHasInvitations(personView.hasInvitations);
+        return person;
+    }
+
+    public static Collection<PersonView> toPersonViews(List<Person> personen){
+        return personen.stream().map(PersonView::from).collect(Collectors.toList());
+    }
+
+    public static List<Person> toPersonen(Collection<PersonView> personViews) {
+        if (personViews != null) {
+            return personViews.stream().map(PersonView::toPerson).collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
 }

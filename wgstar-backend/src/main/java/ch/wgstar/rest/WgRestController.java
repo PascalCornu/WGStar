@@ -2,6 +2,8 @@ package ch.wgstar.rest;
 
 import ch.wgstar.model.WG;
 import ch.wgstar.repository.WgRepository;
+import ch.wgstar.rest.view.PersonView;
+import ch.wgstar.rest.view.WGView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,16 +38,10 @@ public class WgRestController {
 
     /**
      * speichert eine WG
-     * @param payload Daten vom Frontend
+     * @param wgView Daten vom Frontend
      */
     @RequestMapping(value = "/wg/save", method = RequestMethod.POST)
-    public void saveWg(@RequestBody Map<String, Object> payload) {
-        WG wg = new WG();
-        wg.setName((String) payload.get("name"));
-        wg.setAddress((String) payload.get("address"));
-        wg.setPlz((int) payload.get("plz"));
-        wg.setPlace((String) payload.get("place"));
-        wg.setRooms((int) payload.get("rooms"));
-        wgRepository.save(wg);
+    public void saveWg(@RequestBody WGView wgView) {
+        wgRepository.save(WGView.toWg(wgView));
     }
 }

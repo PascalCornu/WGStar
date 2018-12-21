@@ -30,7 +30,6 @@ public class Person extends BaseEntity {
     @Size(max = FIELD_LENGTH_NORMAL)
     private String password;
 
-    @Max(2)
     private boolean hasInvitations;
 
 }

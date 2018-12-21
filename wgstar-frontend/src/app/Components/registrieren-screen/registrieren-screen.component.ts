@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {PersonService} from '../../share/service/person.service';
 import {Person} from '../../share/model/person';
+import {Router} from '@angular/router';
 
 /**
  * Autor: Thierry Ehrsam
@@ -23,7 +24,8 @@ export class RegistrierenScreenComponent {
   createPerson: Person = new Person();
 
   constructor(
-    private personService: PersonService
+    private personService: PersonService,
+    private router: Router
   ) { }
 
   /**
@@ -64,6 +66,8 @@ export class RegistrierenScreenComponent {
    */
   savePerson(){
     this.personService.savePerson(this.createPerson)
-      .subscribe();
+      .subscribe(
+        response => this.router.navigateByUrl('/login')
+      );
   }
 }
