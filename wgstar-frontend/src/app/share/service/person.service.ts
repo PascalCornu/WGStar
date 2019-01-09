@@ -24,6 +24,9 @@ const httpOptions = {
  */
 @Injectable()
 export class PersonService {
+
+  loginPerson: Person;
+
   /**
    * Typ der HandleError Methode
    */

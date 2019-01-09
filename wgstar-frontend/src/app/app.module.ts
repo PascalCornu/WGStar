@@ -48,6 +48,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {WgService} from './share/service/wg.service';
 import {WgCreateComponent} from './Components/member-zone/wg-create/wg-create.component';
 import {PersonLoginService} from './share/service/personLogin.service';
+import {InvitationService} from './share/service/invitation.service';
 
 /**
  * Autor: Yves Stalder
@@ -149,6 +150,7 @@ import {PersonLoginService} from './share/service/personLogin.service';
     WgService,
     HttpErrorHandler,
     MessageService,
+    InvitationService
   ],
   bootstrap: [AppComponent]
 })
