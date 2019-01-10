@@ -21,8 +21,8 @@ public class InvitationRestController {
     private InvitationRepository invitationRepository;
 
     @RequestMapping(value = "/invitation/{personId}", method = RequestMethod.GET)
-    public Collection<InvitationView> getAllInvitationsOfPerson(@PathVariable Long id) {
-        return InvitationView.toInvitationViews(invitationRepository.findAllByInvitingPerson(personRepository.getOne(id)));
+    public Collection<InvitationView> getAllInvitationsOfPerson(@PathVariable Long personId) {
+        return InvitationView.toInvitationViews(invitationRepository.findAllByInvitingPerson(personRepository.getOne(personId)));
     }
 
     @RequestMapping(value = "/invitation/save", method = RequestMethod.POST)

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Person} from '../../share/model/person';
 import {PersonLoginService} from '../../share/service/personLogin.service';
 import {PersonService} from '../../share/service/person.service';
+import {WgService} from '../../share/service/wg.service';
 
 /**
  * Autor: Yves Stalder
@@ -20,21 +21,14 @@ export class MemberZoneComponent implements OnInit {
    */
   private personLogin: Person;
 
-  constructor(private personLoginService: PersonLoginService, private personService: PersonService) { }
+  constructor(private personLoginService: PersonLoginService, private wgService: WgService) { }
 
   /**
    * holt die eingeloggte Person aus dem Service
    */
   ngOnInit() {
     this.personLogin = this.personLoginService.getloginPerson();
-    this.personService.loginPerson = this.personLogin
-  }
-
-  /**
-   * logout
-   */
-  logout(){
-    localStorage.setItem('isMember', 'false');
-    window.location.reload();
+    console.log(this.personLogin);
+    console.log(this.wgService.getWgs());
   }
 }

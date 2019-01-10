@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {WgService} from '../../../share/service/wg.service';
 import {PersonService} from '../../../share/service/person.service';
 import {Person} from '../../../share/model/person';
+import {PersonLoginService} from '../../../share/service/personLogin.service';
 
 /*
  * Autor: Yves Stalder
@@ -13,7 +14,8 @@ import {Person} from '../../../share/model/person';
  */
 @Component({
   selector: 'app-wg-crate-zone',
-  templateUrl: './wg-create.component.html'
+  templateUrl: './wg-create.component.html',
+  styleUrls: ['./wg-create.component.css']
 })
 export class WgCreateComponent implements OnInit {
 
@@ -21,6 +23,9 @@ export class WgCreateComponent implements OnInit {
    * alle Personen
    */
   persons: Person[] = [];
+
+  selectedPerson: Person = {};
+
   /**
    * Wg, in welche die Werte gespeichert werden
    */
@@ -29,7 +34,8 @@ export class WgCreateComponent implements OnInit {
   constructor(private activateedRoute: ActivatedRoute,
               private router: Router,
               private wgService: WgService,
-              private personService : PersonService) {
+              private personService : PersonService,
+              private personLoginService: PersonLoginService) {
 
   }
 
@@ -37,6 +43,8 @@ export class WgCreateComponent implements OnInit {
    * holt alle Personen, um sie der WG zuzuweisen
    */
   ngOnInit() {
+    this.createWG.personList = [];
+    this.createWG.owner = this.personLoginService.loginPerson;
     this.getPersons();
   }
 
@@ -44,6 +52,8 @@ export class WgCreateComponent implements OnInit {
    * speichert eine WG im Backend
    */
   saveWg(){
+    this.createWG.personList.push(this.selectedPerson);
+    console.log(this.createWG);
     this.wgService.saveWg(this.createWG)
     .subscribe();
   }

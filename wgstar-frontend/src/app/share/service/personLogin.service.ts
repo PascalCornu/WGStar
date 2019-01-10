@@ -7,13 +7,15 @@ import {Person} from '../model/person';
  * Datum: 16.10.2018
  * Service für die eingeloggte Person
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class PersonLoginService {
 
   /**
    * Person, die eingeloggt ist
    */
-  loginPerson: Person;
+  loginPerson: Person = {};
 
   /**
    * weist eine eingeloggte Person dem Service zu
@@ -27,5 +29,9 @@ export class PersonLoginService {
    */
   getloginPerson() {
     return this.loginPerson;
+  }
+
+  isLoggedIn() : boolean {
+    return this.loginPerson.id != null;
   }
 }

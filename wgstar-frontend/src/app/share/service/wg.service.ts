@@ -6,6 +6,9 @@ import {apiEndpoints} from '../api-endpoints';
 import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
 import {Wg} from '../model/wg';
+import {Invitation} from '../model/invitation';
+import {PersonService} from './person.service';
+import {PersonLoginService} from './personLogin.service';
 
 /**
  * Http-Optionen, die bei einem Call an Backend übergeben werden.
@@ -33,7 +36,8 @@ export class WgService {
    * erstellt ein ErrorHandler für die WG
    */
   constructor(private http: HttpClient,
-              private httpErrorHandler: HttpErrorHandler) {
+              private httpErrorHandler: HttpErrorHandler,
+              private personLoginService: PersonLoginService) {
     this.handleError = httpErrorHandler.createHandleError('Wg');
   }
 
@@ -48,6 +52,8 @@ export class WgService {
       );
   }
 
-
+  getWgs(): Observable<Wg> {
+    return this.http.get<Wg>(apiEndpoints.getWgByPersonId + this.personLoginService.loginPerson.id.toString());
+  }
 
 }

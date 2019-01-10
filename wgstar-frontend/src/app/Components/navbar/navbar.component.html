@@ -1,0 +1,42 @@
+<div class="navBar">
+  <ul>
+    <li class="nav-item">
+      <a *ngIf="!personLoginService.isLoggedIn()" class="nav-link"
+         routerLink="login"
+         routerLinkActive="active">
+        <span>Login</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="!personLoginService.isLoggedIn()" class="nav-link"
+         routerLink="registrieren"
+         routerLinkActive="active"
+         routerLinkActiveOptions="{exact: true}">
+        <span>Registrieren</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="personLoginService.isLoggedIn()" class="nav-link"
+         routerLink="member"
+         routerLinkActive="active"
+         routerLinkActiveOptions="{exact: true}">
+        <span>Memberbereich</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="personLoginService.isLoggedIn()" class="nav-link"
+         routerLink="createwg"
+         routerLinkActive="active"
+         routerLinkActiveOptions="{exact: true}">
+        <span>Wg erstellen</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="personLoginService.isLoggedIn()" class="nav-link"
+         (click)="logout()">
+        <span>Logout</span>
+      </a>
+    </li>
+  </ul>
+
+</div>

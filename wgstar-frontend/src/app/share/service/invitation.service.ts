@@ -8,6 +8,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {Wg} from '../model/wg';
 import {Invitation} from '../model/invitation';
 import {PersonService} from './person.service';
+import {PersonLoginService} from './personLogin.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,7 +23,7 @@ export class InvitationService {
 
   constructor(private http: HttpClient,
               private httpErrorHandler: HttpErrorHandler,
-              private personService: PersonService) {
+              private personLoginService: PersonLoginService) {
     this.handleError = httpErrorHandler.createHandleError('Invitation');
   }
 
@@ -35,7 +36,7 @@ export class InvitationService {
   }
 
   getInvitations(): Observable<Invitation> {
-      return this.http.get<Invitation>(apiEndpoints.getInvitations + this.personService.loginPerson.id.toString());
+      return this.http.get<Invitation>(apiEndpoints.getInvitations + this.personLoginService.loginPerson.id.toString());
   }
 
 }

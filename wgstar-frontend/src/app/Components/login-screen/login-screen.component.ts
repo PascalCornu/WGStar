@@ -3,6 +3,7 @@ import {PersonService} from '../../share/service/person.service';
 import {Person} from '../../share/model/person';
 import {MatSnackBar} from '@angular/material';
 import {PersonLoginService} from '../../share/service/personLogin.service';
+import {Router} from '@angular/router';
 
 /**
  * Autor: Pascal Cornu
@@ -31,6 +32,7 @@ export class LoginScreenComponent implements OnInit {
     private personService: PersonService,
     private personLoginService: PersonLoginService,
     public snackBar: MatSnackBar,
+    public router: Router
   ) {
   }
 
@@ -60,7 +62,8 @@ export class LoginScreenComponent implements OnInit {
      this.snackBar.open('erfolgreich eingeloggt', '', {
        duration: 2000,
      });
-     window.location.reload();
+
+     this.router.navigateByUrl('/member');
    } else{
      this.snackBar.open('Password oder Email stimmen nicht überein', '', {
        duration: 2000,

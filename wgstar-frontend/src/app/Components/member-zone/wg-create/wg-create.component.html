@@ -1,9 +1,29 @@
 <h1>Erstelle eine WG</h1>
-<input [(ngModel)]="createWG.name" class="name" type="text" placeholder="Name der WG">
-<input [(ngModel)]="createWG.rooms" class="name" type="number" min="0" placeholder="Anzahl Zimmer">
-<input [(ngModel)]="createWG.address" class="name" type="text" placeholder="Adresse ink. Hausnummer">
-<input [(ngModel)]="createWG.place" class="name" type="text" placeholder="Ort">
-<input [(ngModel)]="createWG.plz" class="name" type="number" placeholder="PLZ">
-<button (click)="saveWg()">WG Speichern</button>
 
-
+<mat-card>
+  <form class="form-login">
+    <mat-form-field>
+      <input required matInput type="text" [(ngModel)]="createWG.name" name="name" placeholder="Name" >
+    </mat-form-field>
+    <mat-form-field>
+      <input required matInput type="text" [(ngModel)]="createWG.rooms" name="rooms" placeholder="Anzahl Räume" >
+    </mat-form-field>
+    <mat-form-field>
+      <input required matInput type="text" [(ngModel)]="createWG.address" name="address" placeholder="Addresse" >
+    </mat-form-field>
+    <mat-form-field>
+      <input required matInput type="text" [(ngModel)]="createWG.plz" name="plz" placeholder="PLZ" >
+    </mat-form-field>
+    <mat-form-field>
+      <input required matInput type="text" [(ngModel)]="createWG.place" name="place" placeholder="Ort" >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select required [(value)]="selectedPerson" placeholder="Einzuladende Person">
+        <mat-option *ngFor="let person of persons" [value]="person">
+          {{person.firstname}} {{person.lastname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button (click)="saveWg()">Wg Speichern</button>
+  </form>
+</mat-card>
