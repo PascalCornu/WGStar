@@ -28,7 +28,5 @@ export class MemberZoneComponent implements OnInit {
    */
   ngOnInit() {
     this.personLogin = this.personLoginService.getloginPerson();
-    console.log(this.personLogin);
-    console.log(this.wgService.getWgs());
   }
 }

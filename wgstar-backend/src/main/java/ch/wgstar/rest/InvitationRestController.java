@@ -2,6 +2,7 @@ package ch.wgstar.rest;
 
 import ch.wgstar.repository.InvitationRepository;
 import ch.wgstar.repository.PersonRepository;
+import ch.wgstar.rest.dto.InvitationDto;
 import ch.wgstar.rest.view.InvitationView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,13 +21,16 @@ public class InvitationRestController {
     @Autowired
     private InvitationRepository invitationRepository;
 
+    @Autowired
+    private InvitationView invitationView;
+
     @RequestMapping(value = "/invitation/{personId}", method = RequestMethod.GET)
-    public Collection<InvitationView> getAllInvitationsOfPerson(@PathVariable Long personId) {
-        return InvitationView.toInvitationViews(invitationRepository.findAllByInvitingPerson(personRepository.getOne(personId)));
+    public Collection<InvitationDto> getAllInvitationsOfPerson(@PathVariable Long personId) {
+        return invitationView.toInvitationDtos(invitationRepository.findAllByInvitingPerson(personRepository.getOne(personId)));
     }
 
     @RequestMapping(value = "/invitation/save", method = RequestMethod.POST)
-    public void saveInvitation(@RequestBody InvitationView invitationView) {
-        invitationRepository.save(InvitationView.toInvitation(invitationView));
+    public void saveInvitation(@RequestBody InvitationDto invitationDto) {
+        invitationRepository.saveAndFlush(invitationView.toInvitation(invitationDto));
     }
 }

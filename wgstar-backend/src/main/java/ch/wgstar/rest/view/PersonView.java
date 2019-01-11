@@ -1,8 +1,10 @@
 package ch.wgstar.rest.view;
 
 import ch.wgstar.model.Person;
-import lombok.Builder;
-import lombok.Value;
+import ch.wgstar.rest.dto.PersonDto;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -15,50 +17,44 @@ import java.util.stream.Collectors;
  * Datum: 23.10.2018
  * Person View ist ein DTO für ein Personen Objekt
  */
-@Value
-@Builder
+@Component
+@Getter
+@Setter
 public class PersonView {
-    Long id;
-    String lastname;
-    String firstname;
-    String email;
-    String password;
-    boolean hasInvitations;
-    Long version;
 
     /**
      * Erstllt einen View bzw. ein DTO vom Personenobjekt
      * @param person das Objekt zur Konvertierung
      * @return das DTO
      */
-    public static PersonView from(Person person) {
-        return builder()
-                .id(person.getId())
-                .lastname(person.getLastname())
-                .firstname(person.getFirstname())
-                .email(person.getEmail())
-                .password(person.getPassword())
-                .build();
+    public PersonDto from(Person person) {
+        PersonDto personDto = new PersonDto();
+        personDto.setId(person.getId());
+        personDto.setLastname(person.getLastname());
+        personDto.setFirstname(person.getFirstname());
+        personDto.setEmail(person.getEmail());
+        personDto.setPassword(person.getPassword());
+        return personDto;
     }
 
-    public static Person toPerson(PersonView personView) {
+    public Person toPerson(PersonDto personDto) {
         Person person = new Person();
-        person.setId(personView.getId());
-        person.setLastname(personView.getLastname());
-        person.setFirstname(personView.getFirstname());
-        person.setEmail(personView.getEmail());
-        person.setPassword(personView.getPassword());
-        person.setHasInvitations(personView.hasInvitations);
+        person.setId(personDto.getId());
+        person.setLastname(personDto.getLastname());
+        person.setFirstname(personDto.getFirstname());
+        person.setEmail(personDto.getEmail());
+        person.setPassword(personDto.getPassword());
+        person.setHasInvitations(personDto.isHasInvitations());
         return person;
     }
 
-    public static Collection<PersonView> toPersonViews(List<Person> personen){
-        return personen.stream().map(PersonView::from).collect(Collectors.toList());
+    public Collection<PersonDto> toPersonDto(List<Person> personen){
+        return personen.stream().map(this::from).collect(Collectors.toList());
     }
 
-    public static List<Person> toPersonen(Collection<PersonView> personViews) {
-        if (personViews != null) {
-            return personViews.stream().map(PersonView::toPerson).collect(Collectors.toList());
+    public List<Person> toPersonen(Collection<PersonDto> personDtos) {
+        if (personDtos != null) {
+            return personDtos.stream().map(this::toPerson).collect(Collectors.toList());
         }
         return Collections.emptyList();
     }

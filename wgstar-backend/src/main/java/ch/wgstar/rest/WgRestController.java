@@ -4,6 +4,7 @@ import ch.wgstar.model.Person;
 import ch.wgstar.model.WG;
 import ch.wgstar.repository.PersonRepository;
 import ch.wgstar.repository.WgRepository;
+import ch.wgstar.rest.dto.WgDto;
 import ch.wgstar.rest.view.WGView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,12 +34,15 @@ public class WgRestController {
     @Autowired
     PersonRepository personRepository;
 
+    @Autowired
+    private WGView wgView;
+
     /**
      * Holt alle Wgs
      * @return wg
      */
     @RequestMapping(value = "/wg/get/{personId}", method = RequestMethod.GET)
-    public Collection<WGView> getAllWg(@PathVariable Long personId) {
+    public Collection<WgDto> getAllWg(@PathVariable Long personId) {
         //return WGView.fromWgList(wgRepository.findAllByPersonListContainingOrOwner(personRepository.getOne(personId)));
         Person person = personRepository.getOne(personId);
         List<WG> allWgsOfUser = new ArrayList<>();
@@ -49,16 +53,17 @@ public class WgRestController {
             }
         });
 
-        return WGView.fromWgList(allWgsOfUser);
+        return wgView.fromWgList(allWgsOfUser);
     }
 
     /**
      * speichert eine WG
-     * @param wgView Daten vom Frontend
+     * @param wgDto Daten vom Frontend
      */
     @RequestMapping(value = "/wg/save", method = RequestMethod.POST)
-    public void saveWg(@RequestBody WGView wgView) {
-        WG wg = WGView.toWg(wgView);
-        wgRepository.save(wg);
+    public WgDto saveWg(@RequestBody WgDto wgDto) {
+        WG wg = wgView.toWg(wgDto);
+        wg = wgRepository.saveAndFlush(wg);
+        return wgView.from(wg);
     }
 }

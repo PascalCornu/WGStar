@@ -1,40 +1,58 @@
 package ch.wgstar.rest.view;
 
 import ch.wgstar.model.Invitation;
-import lombok.Builder;
-import lombok.Value;
+import ch.wgstar.model.Person;
+import ch.wgstar.model.WG;
+import ch.wgstar.repository.PersonRepository;
+import ch.wgstar.repository.WgRepository;
+import ch.wgstar.rest.dto.InvitationDto;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Value
-@Builder
+@Component
+@Getter
+@Setter
 public class InvitationView {
-    private Long id;
-    private PersonView invitingPerson;
-    private WGView invitingWG;
-    private boolean done;
 
-    public static InvitationView from(Invitation invitation) {
-        return builder()
-                .id(invitation.getId())
-                .invitingPerson(PersonView.from(invitation.getInvitingPerson()))
-                .invitingWG(WGView.from(invitation.getInvitingWg()))
-                .done(invitation.isDone())
-                .build();
+    @Autowired
+    private WGView wgView;
+
+    @Autowired
+    private PersonView personView;
+
+    @Autowired
+    private PersonRepository personRepository;
+
+    @Autowired
+    private WgRepository wgRepository;
+
+    public InvitationDto from(Invitation invitation) {
+        InvitationDto invitationDto = new InvitationDto();
+        invitationDto.setId(invitation.getId());
+        invitationDto.setInvitingPerson(personView.from(invitation.getInvitingPerson()));
+        invitationDto.setInvitingWg(wgView.from(invitation.getInvitingWg()));
+        invitationDto.setDone(invitation.isDone());
+        return invitationDto;
     }
 
-    public static Collection<InvitationView> toInvitationViews(List<Invitation> personen){
-        return personen.stream().map(InvitationView::from).collect(Collectors.toList());
+    public Collection<InvitationDto> toInvitationDtos(List<Invitation> personen){
+        return personen.stream().map(this::from).collect(Collectors.toList());
     }
 
-    public static Invitation toInvitation(InvitationView invitationView) {
+    public Invitation toInvitation(InvitationDto invitationDto) {
         Invitation invitation = new Invitation();
-        invitation.setId(invitationView.getId());
-        invitation.setInvitingPerson(PersonView.toPerson(invitationView.getInvitingPerson()));
-        invitation.setInvitingWg(WGView.toWg(invitationView.getInvitingWG()));
-        invitation.setDone(invitationView.isDone());
+        invitation.setId(invitationDto.getId());
+        Person personToInvite = personRepository.getOne(personView.toPerson(invitationDto.getInvitingPerson()).getId());
+        invitation.setInvitingPerson(personToInvite);
+        WG invitingWg = wgRepository.getOne(wgView.toWg(invitationDto.getInvitingWg()).getId());
+        invitation.setInvitingWg(invitingWg);
+        invitation.setDone(invitationDto.isDone());
         return invitation;
     }
 }

@@ -5,6 +5,9 @@ import {WgService} from '../../../share/service/wg.service';
 import {PersonService} from '../../../share/service/person.service';
 import {Person} from '../../../share/model/person';
 import {PersonLoginService} from '../../../share/service/personLogin.service';
+import {MatSnackBar} from '@angular/material';
+import {InvitationService} from '../../../share/service/invitation.service';
+import {Invitation} from '../../../share/model/invitation';
 
 /*
  * Autor: Yves Stalder
@@ -35,6 +38,8 @@ export class WgCreateComponent implements OnInit {
               private router: Router,
               private wgService: WgService,
               private personService : PersonService,
+              private invitationService : InvitationService,
+              public snackBar: MatSnackBar,
               private personLoginService: PersonLoginService) {
 
   }
@@ -52,10 +57,24 @@ export class WgCreateComponent implements OnInit {
    * speichert eine WG im Backend
    */
   saveWg(){
-    this.createWG.personList.push(this.selectedPerson);
-    console.log(this.createWG);
     this.wgService.saveWg(this.createWG)
-    .subscribe();
+    .subscribe(
+      savedWg => {
+        console.log(savedWg);
+        this.createWG = savedWg;
+        if(this.selectedPerson.id !== null){
+          let invitation = new Invitation();
+          invitation.invitingPerson = this.createWG.owner;
+          invitation.invitingWg = this.createWG;
+          invitation.done = false;
+          this.invitationService.saveInvitation(invitation).subscribe(value => console.log("done"));
+        }
+        this.snackBar.open('Wg erstellt', '', {
+          duration: 2000,
+        });
+        this.router.navigateByUrl('/member');
+      }
+    );
   }
 
   /**

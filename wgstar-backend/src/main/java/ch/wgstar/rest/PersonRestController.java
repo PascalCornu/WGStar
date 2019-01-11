@@ -2,6 +2,7 @@ package ch.wgstar.rest;
 
 import ch.wgstar.model.Person;
 import ch.wgstar.repository.PersonRepository;
+import ch.wgstar.rest.dto.PersonDto;
 import ch.wgstar.rest.view.PersonView;
 import ch.wgstar.util.JsonUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -33,6 +34,9 @@ public class PersonRestController {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private PersonView personView;
+
     /**
      * Liefert alle Personen zurück
      * @return alle Personen
@@ -41,7 +45,7 @@ public class PersonRestController {
     @RequestMapping(value = "/person/all", method = RequestMethod.GET)
     public ResponseEntity<?> getPersonen() throws JsonProcessingException {
         List<Person> list = personRepository.findAll();
-        Set<PersonView> collection = list.stream().map(PersonView::from).collect(Collectors.toSet());
+        Set<PersonDto> collection = list.stream().map(personView::from).collect(Collectors.toSet());
         String result = JsonUtil.writeValueAsString(collection);
         return new ResponseEntity<>(result, HttpUtils.headers(), HttpStatus.OK);
     }
@@ -57,6 +61,6 @@ public class PersonRestController {
         person.setLastname((String) payload.get("lastname"));
         person.setEmail((String) payload.get("email"));
         person.setPassword((String) payload.get("password"));
-        personRepository.save(person);
+        personRepository.saveAndFlush(person);
     }
 }

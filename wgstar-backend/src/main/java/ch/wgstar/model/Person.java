@@ -3,9 +3,13 @@ package ch.wgstar.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Autor: Florian Borter
