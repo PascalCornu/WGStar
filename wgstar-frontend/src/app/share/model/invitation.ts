@@ -3,7 +3,7 @@ import {Wg} from './wg';
 
 export class Invitation {
   id?: number;
-  invitingPerson?: Person;
+  invitedPerson?: Person;
   invitingWg?: Wg;
   done?: boolean;
 }

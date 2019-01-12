@@ -29,14 +29,21 @@ export class InvitationService {
 
   saveInvitation(invitation: Invitation) {
     return this.http
-      .post<Wg>(apiEndpoints.saveInvitation, JSON.stringify(invitation), httpOptions)
+      .post<Invitation>(apiEndpoints.saveInvitation, JSON.stringify(invitation), httpOptions)
       .pipe(
         catchError(this.handleError('Invitation', invitation))
       );
   }
 
-  getInvitations(): Observable<Invitation> {
-      return this.http.get<Invitation>(apiEndpoints.getInvitations + this.personLoginService.loginPerson.id.toString());
+  getInvitations(): Observable<Invitation[]> {
+      return this.http.get<Invitation[]>(apiEndpoints.getInvitations + this.personLoginService.loginPerson.id.toString());
+  }
+
+  updateInvitation(invitation: Invitation) {
+      return this.http.put<Invitation>(apiEndpoints.updateInvitation, JSON.stringify(invitation))
+        .pipe(
+          catchError(this.handleError('Invitation', invitation))
+        );
   }
 
 }

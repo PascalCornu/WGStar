@@ -1,4 +1,25 @@
+<div *ngIf="invitations != null">
+  <h1>Deine Einladungen</h1>
+  <mat-card *ngFor="let invitation of invitations">
+    <form class="form-wg-create">
+      <p>Du wurdest in die Wg mit dem Namen {{invitation.invitingWg.name}} eingeladen.</p>
+      <button mat-button class="accept" (click)="accept(invitation)">Einladung annehmen</button>
+      <button mat-button class="decline" (click)="decline(invitation)">Einladung ablehnen</button>
+    </form>
+  </mat-card>
+</div>
 <div>
   <h1>Deine WGs</h1>
+  <mat-card *ngFor="let wg of wgsOfUser">
+    <form class="form-wg-create">
+        <p class="bold">Name der WG:</p>
+        <p>{{wg.name}}</p>
+        <p class="bold">Besitzer der WG:</p>
+        <p>{{wg.owner.firstname}} {{wg.owner.lastname}}</p>
+        <p class="bold">Mitglieder der WG:</p>
+        <p *ngFor="let person of wg.personList">{{person.firstname}} {{person.lastname}}</p>
+        <p *ngIf="wg.personList.length == 0">Keine</p>
+    </form>
+  </mat-card>
 </div>
 

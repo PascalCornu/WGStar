@@ -64,10 +64,10 @@ export class WgCreateComponent implements OnInit {
         this.createWG = savedWg;
         if(this.selectedPerson.id !== null){
           let invitation = new Invitation();
-          invitation.invitingPerson = this.createWG.owner;
+          invitation.invitedPerson = this.selectedPerson;
           invitation.invitingWg = this.createWG;
           invitation.done = false;
-          this.invitationService.saveInvitation(invitation).subscribe(value => console.log("done"));
+          this.invitationService.saveInvitation(invitation).subscribe();
         }
         this.snackBar.open('Wg erstellt', '', {
           duration: 2000,

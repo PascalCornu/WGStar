@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 @Setter
 public class Invitation extends BaseEntity {
     @ManyToOne
-    private Person invitingPerson;
+    private Person invitedPerson;
 
     @ManyToOne
     private WG invitingWg;

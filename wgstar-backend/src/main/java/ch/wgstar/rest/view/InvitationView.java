@@ -11,7 +11,6 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,21 +34,21 @@ public class InvitationView {
     public InvitationDto from(Invitation invitation) {
         InvitationDto invitationDto = new InvitationDto();
         invitationDto.setId(invitation.getId());
-        invitationDto.setInvitingPerson(personView.from(invitation.getInvitingPerson()));
+        invitationDto.setInvitedPerson(personView.from(invitation.getInvitedPerson()));
         invitationDto.setInvitingWg(wgView.from(invitation.getInvitingWg()));
         invitationDto.setDone(invitation.isDone());
         return invitationDto;
     }
 
-    public Collection<InvitationDto> toInvitationDtos(List<Invitation> personen){
+    public List<InvitationDto> toInvitationDtos(List<Invitation> personen){
         return personen.stream().map(this::from).collect(Collectors.toList());
     }
 
     public Invitation toInvitation(InvitationDto invitationDto) {
         Invitation invitation = new Invitation();
         invitation.setId(invitationDto.getId());
-        Person personToInvite = personRepository.getOne(personView.toPerson(invitationDto.getInvitingPerson()).getId());
-        invitation.setInvitingPerson(personToInvite);
+        Person personToInvite = personRepository.getOne(personView.toPerson(invitationDto.getInvitedPerson()).getId());
+        invitation.setInvitedPerson(personToInvite);
         WG invitingWg = wgRepository.getOne(wgView.toWg(invitationDto.getInvitingWg()).getId());
         invitation.setInvitingWg(invitingWg);
         invitation.setDone(invitationDto.isDone());

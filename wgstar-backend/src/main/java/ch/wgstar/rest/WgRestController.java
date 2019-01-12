@@ -43,7 +43,6 @@ public class WgRestController {
      */
     @RequestMapping(value = "/wg/get/{personId}", method = RequestMethod.GET)
     public Collection<WgDto> getAllWg(@PathVariable Long personId) {
-        //return WGView.fromWgList(wgRepository.findAllByPersonListContainingOrOwner(personRepository.getOne(personId)));
         Person person = personRepository.getOne(personId);
         List<WG> allWgsOfUser = new ArrayList<>();
         List<WG> allWgs = wgRepository.findAll();
@@ -65,5 +64,17 @@ public class WgRestController {
         WG wg = wgView.toWg(wgDto);
         wg = wgRepository.saveAndFlush(wg);
         return wgView.from(wg);
+    }
+
+    @RequestMapping(value = "/wg/update", method = RequestMethod.PUT)
+    public void updateWg(@RequestBody WgDto wgDto) {
+        WG wg = wgView.toWg(wgDto);
+        WG wgtoUpdate = wgRepository.getOne(wg.getId());
+
+        List<Person> personList = new ArrayList<>();
+        wg.getPersonList().forEach(person -> personList.add(personRepository.getOne(person.getId())));
+        wgtoUpdate.setPersonList(personList);
+
+        wgRepository.saveAndFlush(wgtoUpdate);
     }
 }

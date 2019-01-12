@@ -48,6 +48,7 @@ import {WgCreateComponent} from './Components/member-zone/wg-create/wg-create.co
 import {PersonLoginService} from './share/service/personLogin.service';
 import {InvitationService} from './share/service/invitation.service';
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import {MemberZoneRedirectComponent} from './Components/member-zone/member-zone-redirect.component';
 
 /**
  * Autor: Yves Stalder
@@ -63,7 +64,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
     RegistrierenScreenComponent,
     WgCreateComponent,
     NavbarComponent,
-
+    MemberZoneRedirectComponent
   ],
   imports: [
     BrowserModule,

@@ -52,8 +52,12 @@ export class WgService {
       );
   }
 
-  getWgs(): Observable<Wg> {
-    return this.http.get<Wg>(apiEndpoints.getWgByPersonId + this.personLoginService.loginPerson.id.toString());
+  getWgs(): Observable<Wg[]> {
+    return this.http.get<Wg[]>(apiEndpoints.getWgByPersonId + this.personLoginService.loginPerson.id.toString());
+  }
+
+  updateWg(wg: Wg) {
+    return this.http.put<Wg>(apiEndpoints.updateWg, wg)
   }
 
 }
