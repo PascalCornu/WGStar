@@ -60,7 +60,6 @@ export class WgCreateComponent implements OnInit {
     this.wgService.saveWg(this.createWG)
     .subscribe(
       savedWg => {
-        console.log(savedWg);
         this.createWG = savedWg;
         if(this.selectedPerson.id !== null){
           let invitation = new Invitation();

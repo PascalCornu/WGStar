@@ -40,10 +40,7 @@ export class InvitationService {
   }
 
   updateInvitation(invitation: Invitation) {
-      return this.http.put<Invitation>(apiEndpoints.updateInvitation, JSON.stringify(invitation))
-        .pipe(
-          catchError(this.handleError('Invitation', invitation))
-        );
+    return this.http.put<Invitation>(apiEndpoints.updateInvitation, invitation)
   }
 
 }

@@ -1,5 +1,8 @@
-<div *ngIf="invitations != null">
-  <h1>Deine Einladungen</h1>
+<div>
+  <div *ngFor="let invitation of invitations; let i = index">
+    <h1 *ngIf="i == 0">Deine Einladungen</h1>
+  </div>
+
   <mat-card *ngFor="let invitation of invitations">
     <form class="form-wg-create">
       <p>Du wurdest in die Wg mit dem Namen {{invitation.invitingWg.name}} eingeladen.</p>

@@ -37,12 +37,8 @@ public class InvitationRestController {
 
     @RequestMapping(value = "/invitation/update", method = RequestMethod.PUT)
     public void updateInvitation(@RequestBody InvitationDto invitationDto) {
-        System.out.println("hallo??");
         Invitation invitation = invitationView.toInvitation(invitationDto);
-        System.out.println(invitation.isDone());
-        Invitation invitationToUpdate = invitationRepository.getOne(invitationDto.getId());
-        invitationToUpdate.setInvitingWg(invitation.getInvitingWg());
-        invitationToUpdate.setInvitedPerson(invitation.getInvitedPerson());
+        Invitation invitationToUpdate = invitationRepository.getOne(invitation.getId());
         invitationToUpdate.setDone(invitation.isDone());
         invitationRepository.saveAndFlush(invitationToUpdate);
     }

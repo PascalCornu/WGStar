@@ -24,8 +24,8 @@ export class MemberZoneComponent implements OnInit {
    * die eingeloggte Person
    */
   private personLogin: Person;
-  public invitations: Invitation[];
-  public wgsOfUser: Wg[];
+  public invitations: Invitation[] = [];
+  public wgsOfUser: Wg[] = [];
 
   constructor(private personLoginService: PersonLoginService,
               private wgService: WgService,
@@ -47,19 +47,18 @@ export class MemberZoneComponent implements OnInit {
     )
   }
 
-  accept(invitation: Invitation){
+  public accept(invitation: Invitation){
     invitation.done = true;
-    this.invitationService.updateInvitation(invitation);
-    console.log(invitation);
+    this.invitationService.updateInvitation(invitation).subscribe();
     invitation.invitingWg.personList.push(this.personLoginService.loginPerson);
     this.wgService.updateWg(invitation.invitingWg).subscribe(
       response => this.router.navigateByUrl('/member-redirect')
     );
   }
 
-  decline(invitation: Invitation){
+  public decline(invitation: Invitation){
     invitation.done = true;
-    this.invitationService.updateInvitation(invitation);
+    this.invitationService.updateInvitation(invitation).subscribe();
     this.router.navigateByUrl('/member-redirect');
   }
 }
