@@ -6,6 +6,8 @@ import {InvitationService} from '../../share/service/invitation.service';
 import {Invitation} from '../../share/model/invitation';
 import {Router} from '@angular/router';
 import {Wg} from '../../share/model/wg';
+import {PersonService} from '../../share/service/person.service';
+import {MatSnackBar} from '@angular/material';
 
 /**
  * Autor: Yves Stalder
@@ -27,9 +29,15 @@ export class MemberZoneComponent implements OnInit {
   public invitations: Invitation[] = [];
   public wgsOfUser: Wg[] = [];
 
-  constructor(private personLoginService: PersonLoginService,
+  persons: Person[] = [];
+
+  selectedPerson: Person = {};
+
+  constructor(public personLoginService: PersonLoginService,
               private wgService: WgService,
               private invitationService: InvitationService,
+              private personService: PersonService,
+              private snackBar: MatSnackBar,
               private router: Router) { }
 
   /**
@@ -44,7 +52,9 @@ export class MemberZoneComponent implements OnInit {
     );
     this.wgService.getWgs().subscribe(
       wgsOfUser => this.wgsOfUser = wgsOfUser
-    )
+    );
+
+    this.getPersons();
   }
 
   public accept(invitation: Invitation){
@@ -59,6 +69,33 @@ export class MemberZoneComponent implements OnInit {
   public decline(invitation: Invitation){
     invitation.done = true;
     this.invitationService.updateInvitation(invitation).subscribe();
+    this.router.navigateByUrl('/member-redirect');
+  }
+
+  getPersons(){
+    this.personService
+      .getPersons()
+      .subscribe(persons => {
+        persons.forEach(person =>{
+          if (person.id != this.personLoginService.loginPerson.id){
+            this.persons.push(person);
+          }
+        })
+        /*this.persons = persons;*/
+      } );
+  }
+
+  public invite(wg: Wg){
+    if(this.selectedPerson.id !== null){
+      let invitation = new Invitation();
+      invitation.invitedPerson = this.selectedPerson;
+      invitation.invitingWg = wg;
+      invitation.done = false;
+      this.invitationService.saveInvitation(invitation).subscribe();
+    }
+    this.snackBar.open('Person eingeladen', '', {
+      duration: 2000,
+    });
     this.router.navigateByUrl('/member-redirect');
   }
 }
