@@ -4,6 +4,7 @@ import {FormControl, Validators} from '@angular/forms';
 import {PersonService} from '../../share/service/person.service';
 import {Person} from '../../share/model/person';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 /**
  * Autor: Thierry Ehrsam
@@ -25,7 +26,8 @@ export class RegistrierenScreenComponent {
 
   constructor(
     private personService: PersonService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   /**
@@ -67,7 +69,12 @@ export class RegistrierenScreenComponent {
   savePerson(){
     this.personService.savePerson(this.createPerson)
       .subscribe(
-        response => this.router.navigateByUrl('/login')
+        response => {
+          this.snackBar.open('Person registriert', '', {
+            duration: 2000,
+          });
+          this.router.navigateByUrl('/login');
+        }
       );
   }
 }

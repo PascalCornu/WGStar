@@ -83,7 +83,12 @@ export class WgCreateComponent implements OnInit {
     this.personService
       .getPersons()
       .subscribe(persons => {
-        this.persons = persons;
+        persons.forEach(person =>{
+          if (person.id != this.personLoginService.loginPerson.id){
+            this.persons.push(person);
+          }
+        })
+        /*this.persons = persons;*/
       } );
   }
 }
